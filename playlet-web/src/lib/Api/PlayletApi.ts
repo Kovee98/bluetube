@@ -221,22 +221,29 @@ export class PlayletApi {
         return { filename, content };
     }
 
+    static migratePlayletLibUrl(link: string): string {
+        return link.replace(
+            /^https:\/\/github\.com\/(?:iBicha|Kovee98)\/playlet\/releases\//i,
+            "https://github.com/Kovee98/bluetube/releases/"
+        );
+    }
+
     static playletLibUrlsForTag(tag: string) {
         const urls = [{
-            link: `https://github.com/Kovee98/playlet/releases/download/${tag}/playlet-lib.squashfs.pkg`,
+            link: `https://github.com/Kovee98/bluetube/releases/download/${tag}/playlet-lib.squashfs.pkg`,
             type: 'custom'
         }, {
-            link: `https://github.com/Kovee98/playlet/releases/download/${tag}/playlet-lib.zip`,
+            link: `https://github.com/Kovee98/bluetube/releases/download/${tag}/playlet-lib.zip`,
             type: 'custom'
         }]
         // When an official release is out, it replaces the current canary release.
         // To avoid the "not found" error, we fallback to the default "latest" release.
         if (tag === "canary") {
             urls.push({
-                link: `https://github.com/Kovee98/playlet/releases/latest/download/playlet-lib.squashfs.pkg`,
+                link: `https://github.com/Kovee98/bluetube/releases/latest/download/playlet-lib.squashfs.pkg`,
                 type: 'custom'
             }, {
-                link: `https://github.com/Kovee98/playlet/releases/latest/download/playlet-lib.zip`,
+                link: `https://github.com/Kovee98/bluetube/releases/latest/download/playlet-lib.zip`,
                 type: 'custom'
             })
         }

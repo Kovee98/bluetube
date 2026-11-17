@@ -5,11 +5,11 @@
     <img src="playlet-app/src/images/vector/logo-light.svg" alt="BlueTube Logo" width="480"/>
   </picture>
   <br/><br/>
-  <a href="https://github.com/Kovee98/playlet/actions/workflows/release-assets.yml">
-    <img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/Kovee98/playlet/release-assets.yml"/>
+  <a href="https://github.com/Kovee98/bluetube/actions/workflows/release-assets.yml">
+    <img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/Kovee98/bluetube/release-assets.yml"/>
   </a>
-  <a href="https://github.com/Kovee98/playlet/releases">
-    <img alt="Current Release" src="https://img.shields.io/github/release/Kovee98/playlet.svg"/>
+  <a href="https://github.com/Kovee98/bluetube/releases">
+    <img alt="Current Release" src="https://img.shields.io/github/release/Kovee98/bluetube.svg"/>
   </a>
   <a href="https://hosted.weblate.org/engage/playlet/">
     <img src="https://hosted.weblate.org/widget/playlet/svg-badge.svg" alt="Translation status" />
@@ -29,8 +29,10 @@ BlueTube is an unofficial YouTube client for Roku, forked from
 It adds a channel-based Subscriptions view and blue branding. It is not affiliated
 with YouTube or Google.
 
-The GitHub repository and release assets retain their `playlet` names for update
-compatibility. Existing profiles, settings, and library URLs are unchanged.
+The repository is now [Kovee98/bluetube](https://github.com/Kovee98/bluetube).
+Release assets retain their `playlet` filenames for update compatibility. Saved
+library URLs using the previous repository name are migrated on startup by the
+updated app; existing profiles and settings are unchanged.
 
 
 ## Screenshots
@@ -48,7 +50,7 @@ More under [Screenshots](./docs/screenshots/README.md)
 
 BlueTube is currently distributed by sideloading, not through its own Roku Store
 listing. Download `playlet-app.zip` from this fork's
-[latest release](https://github.com/Kovee98/playlet/releases/latest) and upload it
+[latest release](https://github.com/Kovee98/bluetube/releases/latest) and upload it
 through your Roku's Development Application Installer. After the BlueTube rebrand,
 install this app package once to update the Roku home-screen name and artwork;
 library-only updates cannot change the installed app's manifest or splash images.

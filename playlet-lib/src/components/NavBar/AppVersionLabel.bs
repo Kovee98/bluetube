@@ -1,7 +1,6 @@
 import "pkg:/components/Services/ApplicationInfo/LibManifestUtils.bs"
 
-const LIB_CANARY_ZIP_URL = "https://github.com/Kovee98/playlet/releases/download/canary/playlet-lib.zip"
-const LIB_CANARY_SQUASHFS_URL = "https://github.com/Kovee98/playlet/releases/download/canary/playlet-lib.squashfs.pkg"
+const LIB_CANARY_URL_PATTERN = "^https://github\.com/Kovee98/(?:playlet|bluetube)/releases/download/canary/playlet-lib\.(?:zip|squashfs\.pkg)$"
 
 function Init()
     m.top.text = GetAppVersion()
@@ -22,7 +21,7 @@ function GetAppVersion() as string
         libUrl = scene.playletLibLoadedUrl.link
         libUrlType = scene.playletLibLoadedUrl.type
 
-        if libUrlType = "custom" and (libUrl = LIB_CANARY_ZIP_URL or libUrl = LIB_CANARY_SQUASHFS_URL)
+        if libUrlType = "custom" and CreateObject("roRegex", LIB_CANARY_URL_PATTERN, "i").IsMatch(libUrl)
             version += "-canary"
         end if
     end if

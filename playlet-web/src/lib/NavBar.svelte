@@ -1,6 +1,7 @@
 <script lang="ts">
   import PlayletLogoDark from "assets/logo-dark.svg.svelte";
   import PlayletLogoLight from "assets/logo-light.svg.svelte";
+  import { PlayletApi } from "lib/Api/PlayletApi";
   import { ExternalControlProtocol } from "lib/Api/ExternalControlProtocol";
   import { appThemeStore, playletStateStore } from "lib/Stores";
   import ThemeSelect from "lib/ThemeToggle.svelte";
@@ -34,12 +35,13 @@
       version += "-dev";
     }
 
+    const libUrl = PlayletApi.migratePlayletLibUrl(playletState?.app?.lib_url ?? "");
     if (
       playletState?.app?.lib_url_type === "custom" &&
-      (playletState?.app?.lib_url ===
-        "https://github.com/Kovee98/playlet/releases/download/canary/playlet-lib.zip" ||
-        playletState?.app?.lib_url ===
-          "https://github.com/Kovee98/playlet/releases/download/canary/playlet-lib.squashfs.pkg")
+      (libUrl ===
+        "https://github.com/Kovee98/bluetube/releases/download/canary/playlet-lib.zip" ||
+        libUrl ===
+          "https://github.com/Kovee98/bluetube/releases/download/canary/playlet-lib.squashfs.pkg")
     ) {
       version += "-canary";
     }

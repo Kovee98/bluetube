@@ -47,7 +47,7 @@ namespace Registry
             sec = CreateObject("roRegistrySection", "Playlet")
             sec.Write("playlet_lib_urls", FormatJson(urls))
             sec.Flush()
-            Logger.Log("Migrated saved Playlet library URLs to Kovee98/playlet")
+            Logger.Log("Migrated saved BlueTube library URLs to Kovee98/bluetube")
         end if
         return urls
     end function

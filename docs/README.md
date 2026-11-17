@@ -13,11 +13,14 @@ splash screens, and library PNGs. The converter uses Chrome by default; set
 `PUPPETEER_EXECUTABLE_PATH` to an installed Chromium/Edge executable if necessary.
 The web favicon uses `playlet-web/public/favicon.svg`.
 
-The GitHub repository, npm packages, release filenames (`playlet-app.zip` and
+The GitHub repository is now `Kovee98/bluetube`. The npm packages, release filenames (`playlet-app.zip` and
 `playlet-lib.zip`), `PlayletLib` component namespace, registry sections, API routes,
-and update URLs intentionally remain unchanged. This is a display/asset rebrand,
-not a data migration. Existing profiles, settings, and update configuration remain
-compatible. Do not globally replace internal `Playlet` identifiers.
+and storage identifiers intentionally remain unchanged. Launch and update URLs use
+the new repository; saved release URLs for `Kovee98/playlet` and `iBicha/playlet`
+are migrated on startup by the updated app, preserving their tag and asset.
+Existing profiles and settings remain compatible. Do not globally replace internal
+`Playlet` identifiers. Sideload the updated app ZIP once to replace the launch URLs
+embedded in the installed app; older app packages still rely on GitHub redirects.
 
 Publish a release through the existing release-assets workflow. To update the Roku
 home-screen name, poster and splash, sideload the new **app ZIP** once; downloading
@@ -46,7 +49,7 @@ downloaded component-library architecture need review against Roku's current rul
 The AGPL license permits covered source reuse subject to its obligations; it does
 not grant YouTube content or trademark rights. Preserve upstream copyright/license
 notices and provide the corresponding source as required.
-No Store submission or repository rename is performed by this rebrand.
+No Store submission is performed by this rebrand.
 
 See Roku's [publishing guide](https://developer.roku.com/dev/docs/channel-publishing-guide),
 [packaging guide](https://developer.roku.com/dev/docs/packaging-channels), and
@@ -235,13 +238,13 @@ These are useful to see if the files and caching are working as expected.
 
 ### Releases from Github
 
-Since Component Libraries are simply zip/squashfs files hosted at some HTTPS endpoint, GitHub releases are used to host and deliver Playlet Lib to users. This fork loads `https://github.com/Kovee98/playlet/releases/latest/download/playlet-lib.squashfs.pkg` by default, then tries `playlet-lib.zip` from the same release before falling back to the embedded library.
+Since Component Libraries are simply zip/squashfs files hosted at some HTTPS endpoint, GitHub releases are used to host and deliver Playlet Lib to users. This fork loads `https://github.com/Kovee98/bluetube/releases/latest/download/playlet-lib.squashfs.pkg` by default, then tries `playlet-lib.zip` from the same release before falling back to the embedded library.
 Squashfs files are faster to load, but they require signing. Zip files can be used without signing if they are served from an HTTPS endpoint.
 
-The update checker and web library-version picker also use `Kovee98/playlet`.
-Previously saved upstream release URLs are migrated to this fork while preserving
-their tag and asset; unrelated custom URLs are unchanged. If a pinned tag is not
-published in the fork, reset **Playlet Library version** to **Latest (default)**
+The update checker and web library-version picker also use `Kovee98/bluetube`.
+Previously saved upstream and old-fork release URLs are migrated to the renamed
+repository while preserving their tag and asset; unrelated custom URLs are
+unchanged. If a pinned tag is not published in the fork, reset **BlueTube Library version** to **Latest (default)**
 in web Settings.
 
 Remote loading requires a public, non-prerelease GitHub release with
