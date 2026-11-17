@@ -129,8 +129,8 @@
         <translation>Falha ao carregar o canal %1</translation>
     </message>
     <message>
-        <source>Failed to get lounge token. Please restart Playlet to use the cast function.</source>
-        <translation>Não conseguiu obter token lounge. Por favor, reinicie Playlet para usar a função de transmitir.</translation>
+        <source>Failed to get lounge token. Please restart BlueTube to use the cast function.</source>
+        <translation>Não conseguiu obter token lounge. Por favor, reinicie BlueTube para usar a função de transmitir.</translation>
     </message>
     <message>
         <source>Subscriptions</source>
@@ -169,8 +169,8 @@
         <translation>Por favor, note que uma conta Invidious é diferente de uma conta do YouTube.</translation>
     </message>
     <message>
-        <source>Do you want to exit Playlet?</source>
-        <translation>Você quer sair do Playlet?</translation>
+        <source>Do you want to exit BlueTube?</source>
+        <translation>Você quer sair do BlueTube?</translation>
     </message>
     <message>
         <source>Sort %1 by</source>
@@ -221,8 +221,8 @@
         <translation>Erro ao configurar o serviço de lounge</translation>
     </message>
     <message>
-        <source>Failed to get screen ID. Please restart Playlet to use the cast function.</source>
-        <translation>Falha ao obter o ID da tela. Por favor, reinicie Playlet para usar a função de transmitir.</translation>
+        <source>Failed to get screen ID. Please restart BlueTube to use the cast function.</source>
+        <translation>Falha ao obter o ID da tela. Por favor, reinicie BlueTube para usar a função de transmitir.</translation>
     </message>
     <message>
         <source>Not a valid screen id: %1</source>
@@ -501,8 +501,8 @@
         <translation>Acesso exclusivo</translation>
     </message>
     <message>
-        <source>This will restart Playlet.</source>
-        <translation>Isso vai reiniciar o Playlet.</translation>
+        <source>This will restart BlueTube.</source>
+        <translation>Isso vai reiniciar o BlueTube.</translation>
     </message>
     <message>
         <source>Invalid response: %1</source>
@@ -637,8 +637,8 @@
         <translation>Por favor, note que marcadores é um recurso experimental.</translation>
     </message>
     <message>
-        <source>Playlet Web App</source>
-        <translation>Playlet Web App</translation>
+        <source>BlueTube Web App</source>
+        <translation>BlueTube Web App</translation>
     </message>
     <message>
         <source>Failed to generate manual pairing code</source>
@@ -677,8 +677,8 @@
         <translation>Ativar o histórico de pesquisa</translation>
     </message>
     <message>
-        <source>Clear search history from Playlet. This affects the search suggestions. This does not affect the watch history on Invidious.</source>
-        <translation>Limpar histórico de pesquisa da Playlet. Isso afeta as sugestões de pesquisa. Isso não afeta o histórico de assistido no Invidious.</translation>
+        <source>Clear search history from BlueTube. This affects the search suggestions. This does not affect the watch history on Invidious.</source>
+        <translation>Limpar histórico de pesquisa da BlueTube. Isso afeta as sugestões de pesquisa. Isso não afeta o histórico de assistido no Invidious.</translation>
     </message>
     <message>
         <source>Search history cleared.</source>
@@ -701,8 +701,8 @@
         <translation>Mostrar uma notificação quando um vídeo é adicionado à fila</translation>
     </message>
     <message>
-        <source>The version of Playlet Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled.</source>
-        <translation>A versão do Playlet Lib para usar. Estes correspondem a lançamentos marcados no Github. As versões que não têm um arquivo playlet-lib.zip estão desativadas.</translation>
+        <source>The version of BlueTube Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled.</source>
+        <translation>A versão do BlueTube Lib para usar. Estes correspondem a lançamentos marcados no Github. As versões que não têm um arquivo playlet-lib.zip estão desativadas.</translation>
     </message>
     <message>
         <source>Interaction Reminder (Subscribe)</source>
@@ -713,8 +713,8 @@
         <translation>Lista dereprodução em fila</translation>
     </message>
     <message>
-        <source>Failed to get session data. Please restart Playlet to use the cast function.</source>
-        <translation>Não conseguimos obter dados da sessão. Por favor, reinicie Playlet para usar a função transmitir.</translation>
+        <source>Failed to get session data. Please restart BlueTube to use the cast function.</source>
+        <translation>Não conseguimos obter dados da sessão. Por favor, reinicie BlueTube para usar a função transmitir.</translation>
     </message>
     <message>
         <source>Invalid JSON from %1 (couldn&apos;t read %2)</source>
@@ -853,8 +853,8 @@
         <translation>Para adicionar favoritos, selecione um vídeo, lista de reprodução ou canal e adicione como marcador.</translation>
     </message>
     <message>
-        <source>Thank you for using Playlet.</source>
-        <translation>Obrigado por usar o Playlet.</translation>
+        <source>Thank you for using BlueTube.</source>
+        <translation>Obrigado por usar o BlueTube.</translation>
     </message>
     <message>
         <source>You have feedback? Let us know by %IssueStart%creating an issue on Github%IssueEnd% or by %EmailStart%sending an email%EmailEnd%.</source>
@@ -869,12 +869,12 @@
         <translation>Aplicar</translation>
     </message>
     <message>
-        <source>Are you sure you want to change the Playlet Library version to %1?</source>
-        <translation>Você tem certeza de que deseja alterar a versão da blibioteca Playlet para %1?</translation>
+        <source>Are you sure you want to change the BlueTube Library version to %1?</source>
+        <translation>Você tem certeza de que deseja alterar a versão da blibioteca BlueTube para %1?</translation>
     </message>
     <message>
-        <source>Playlet Library version changed. Playlet will now restart.</source>
-        <translation>A versão da blibioteca Playlet foi alterada. O Playlet agora será reiniciado.</translation>
+        <source>BlueTube Library version changed. BlueTube will now restart.</source>
+        <translation>A versão da blibioteca BlueTube foi alterada. O BlueTube agora será reiniciado.</translation>
     </message>
     <message>
         <source>Error with login, please refresh the page.</source>
@@ -1169,12 +1169,12 @@
         <translation>Para adicionar marcadores, segure &quot;OK&quot; em um vídeo, lista de reprodução ou canal.</translation>
     </message>
     <message>
-        <source>Use Playlet Remote in the browser</source>
-        <translation>Use Playlet Remote no navegador</translation>
+        <source>Use BlueTube Remote in the browser</source>
+        <translation>Use BlueTube Remote no navegador</translation>
     </message>
     <message>
-        <source>Cast from the YouTube app to Playlet</source>
-        <translation>Transmitir do aplicativo do YouTube para Playlet</translation>
+        <source>Cast from the YouTube app to BlueTube</source>
+        <translation>Transmitir do aplicativo do YouTube para BlueTube</translation>
     </message>
     <message>
         <source>Wired connection</source>
@@ -1229,8 +1229,8 @@
         <translation>Notificações de filas</translation>
     </message>
     <message>
-        <source>Playlet Library version</source>
-        <translation>Versão da blibioteca do Playlet</translation>
+        <source>BlueTube Library version</source>
+        <translation>Versão da blibioteca do BlueTube</translation>
     </message>
     <message>
         <source>Refresh Bookmarks</source>
@@ -1249,8 +1249,8 @@
         <translation>Cursos</translation>
     </message>
     <message>
-        <source>Playlet built-in backend</source>
-        <translation>Back-end integrado do playlet</translation>
+        <source>BlueTube built-in backend</source>
+        <translation>Back-end integrado do BlueTube</translation>
     </message>
     <message>
         <source>Do not show again</source>

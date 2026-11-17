@@ -105,7 +105,7 @@ end function
 
 function ShowPlayletLibLoadErrorDialog()
     message = [
-        "Could not load Playlet component library from any of the following urls:",
+        "Could not load BlueTube component library from any of the following urls:",
     ]
 
     bulletText = []
@@ -114,8 +114,8 @@ function ShowPlayletLibLoadErrorDialog()
     end for
 
     bottomText = [
-        "Please restart Playlet.",
-        "If the problem persist, contact Playlet authors."
+        "Please restart BlueTube.",
+        "If the problem persist, contact BlueTube authors."
     ]
 
     DialogShowError(message, bulletText, bottomText)

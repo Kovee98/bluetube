@@ -28,7 +28,7 @@
             itemSpacing="[0,8]"
             numRows="8"
             focusBitmapUri="pkg:/images/white.$$RES$$.9.png"
-            focusBitmapBlendColor="0xFF1C30FF"
+            focusBitmapBlendColor="0x3EA6FFFF"
         />
         <Label id="status" translation="[355,220]" width="800" wrap="true" />
         <MarkupGrid

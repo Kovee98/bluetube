@@ -122,7 +122,7 @@ And set it to "Enabled".`;
         on:click={() => {
           ExternalControlProtocol.pressKey(BUTTONS.powerOff);
         }}
-        class="btn-primary rounded-full flex items-center justify-center bg-red-600 hover:bg-red-400 w-12 h-12 text-white"
+        class="btn-primary rounded-full flex items-center justify-center bg-primary hover:brightness-110 w-12 h-12 text-primary-content"
       >
         <PowerIcon />
       </button>

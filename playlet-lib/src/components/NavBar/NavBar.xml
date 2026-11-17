@@ -51,7 +51,7 @@
                 itemComponentName="NavBarComponent"
                 focusFootprintBitmapUri=""
                 focusBitmapUri="pkg:/images/white.$$RES$$.9.png"
-                focusBitmapBlendColor="0xFF1C30FF"
+                focusBitmapBlendColor="0x3EA6FFFF"
                 vertFocusAnimationStyle="floatingFocus"
                 numRows="8"
                 scrollSpeed="99999"

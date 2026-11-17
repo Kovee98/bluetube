@@ -1,4 +1,58 @@
-# Playlet documentation
+# BlueTube documentation
+
+BlueTube is a fork of Playlet. Internal package names and the historical architecture
+notes below retain the upstream naming.
+
+## BlueTube branding and Roku distribution
+
+The app's display name is **BlueTube** and its accent is **#3EA6FF**. Original
+play-button/wordmark SVGs live in the app's `src/images/vector`, the library's
+`src/images`, and the web app's `src/assets`. They are not YouTube logos.
+Run `npm run convert-images` after changing the Roku SVGs to regenerate the posters,
+splash screens, and library PNGs. The converter uses Chrome by default; set
+`PUPPETEER_EXECUTABLE_PATH` to an installed Chromium/Edge executable if necessary.
+The web favicon uses `playlet-web/public/favicon.svg`.
+
+The GitHub repository, npm packages, release filenames (`playlet-app.zip` and
+`playlet-lib.zip`), `PlayletLib` component namespace, registry sections, API routes,
+and update URLs intentionally remain unchanged. This is a display/asset rebrand,
+not a data migration. Existing profiles, settings, and update configuration remain
+compatible. Do not globally replace internal `Playlet` identifiers.
+
+Publish a release through the existing release-assets workflow. To update the Roku
+home-screen name, poster and splash, sideload the new **app ZIP** once; downloading
+only the new library cannot change the installed app manifest/artwork. Back up
+important settings first; replacing the development app can affect its stored data.
+Historical screenshots elsewhere in this documentation show upstream Playlet.
+
+### Distribution options
+
+- **Sideloading:** one development app per Roku. Installing another replaces the
+  current development app. It is not a permanent distribution guarantee.
+- **Beta:** upload a signed `.pkg` through Roku's Developer Dashboard and share its
+  access code. Roku currently limits each beta to **20 users and 120 days**;
+  expiration disables it for installed users. This is for testing, not permanent
+  private distribution.
+- **Public Streaming Store:** enroll with Roku, package/sign the app using your
+  developer key, supply listing artwork, descriptions, privacy/support information,
+  run Roku's pre-certification checks, and submit for certification/review.
+  Keep the signing key/password safe for future updates. The sideload ZIPs produced
+  by our workflow are **not** signed Store submission packages.
+
+A Store listing avoids the single-development-app slot, but Roku may still remove
+apps that do not comply. Do not assume an unofficial YouTube client will be approved:
+content authorization, third-party service terms, name/logo rights, and the
+downloaded component-library architecture need review against Roku's current rules.
+The AGPL license permits covered source reuse subject to its obligations; it does
+not grant YouTube content or trademark rights. Preserve upstream copyright/license
+notices and provide the corresponding source as required.
+No Store submission or repository rename is performed by this rebrand.
+
+See Roku's [publishing guide](https://developer.roku.com/dev/docs/channel-publishing-guide),
+[packaging guide](https://developer.roku.com/dev/docs/packaging-channels), and
+[certification criteria](https://developer.roku.com/dev/docs/certification).
+
+## Development reference
 
 This document contains various kinds of information related to Playlet development. It's a bit of a [brain dump](https://en.wiktionary.org/wiki/brain_dump) that I tried to keep structured.
 

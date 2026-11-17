@@ -41,7 +41,7 @@
                     id="progressRect"
                     width="350"
                     height="5"
-                    color="#FF0000"
+                    color="#3EA6FF"
                     translation="[0, 192]"
                     scale="[0, 1]">
                 </Rectangle>

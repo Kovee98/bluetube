@@ -149,8 +149,8 @@
         <translation>Veuillez noter qu&apos;un compte Invidious est différent d&apos;un compte YouTube.</translation>
     </message>
     <message>
-        <source>Do you want to exit Playlet?</source>
-        <translation>Voulez-vous quitter Playlet?</translation>
+        <source>Do you want to exit BlueTube?</source>
+        <translation>Voulez-vous quitter BlueTube?</translation>
     </message>
     <message>
         <source>Sort %1 by</source>
@@ -213,24 +213,24 @@
         <translation>Erreur de configuration du service Lounge</translation>
     </message>
     <message>
-        <source>Failed to get screen ID. Please restart Playlet to use the cast function.</source>
-        <translation>Impossible d&apos;obtenir l&apos;identifiant de l&apos;écran. Veuillez redémarrer Playlet pour utiliser la fonction de diffusion.</translation>
+        <source>Failed to get screen ID. Please restart BlueTube to use the cast function.</source>
+        <translation>Impossible d&apos;obtenir l&apos;identifiant de l&apos;écran. Veuillez redémarrer BlueTube pour utiliser la fonction de diffusion.</translation>
     </message>
     <message>
         <source>Not a valid screen id: %1</source>
         <translation>Identifiant d&apos;écran non valide : %1</translation>
     </message>
     <message>
-        <source>Failed to get lounge token. Please restart Playlet to use the cast function.</source>
-        <translation>Échec de l&apos;obtention du jeton Lounge. Veuillez redémarrer Playlet pour utiliser la fonction de diffusion.</translation>
+        <source>Failed to get lounge token. Please restart BlueTube to use the cast function.</source>
+        <translation>Échec de l&apos;obtention du jeton Lounge. Veuillez redémarrer BlueTube pour utiliser la fonction de diffusion.</translation>
     </message>
     <message>
         <source>Invalid response: %1</source>
         <translation>Réponse non valide : %1</translation>
     </message>
     <message>
-        <source>Failed to get session data. Please restart Playlet to use the cast function.</source>
-        <translation>Échec de l&apos;obtention des données de session. Veuillez redémarrer Playlet pour utiliser la fonction de diffusion.</translation>
+        <source>Failed to get session data. Please restart BlueTube to use the cast function.</source>
+        <translation>Échec de l&apos;obtention des données de session. Veuillez redémarrer BlueTube pour utiliser la fonction de diffusion.</translation>
     </message>
     <message>
         <source>Invidious custom instance</source>
@@ -617,12 +617,12 @@
         <translation>Impossible d&apos;obtenir l&apos;adresse IP: est-on connecté à Internet?</translation>
     </message>
     <message>
-        <source>Playlet Web App</source>
-        <translation>Application Web Playlet</translation>
+        <source>BlueTube Web App</source>
+        <translation>Application Web BlueTube</translation>
     </message>
     <message>
-        <source>Use Playlet Remote in the browser</source>
-        <translation>Controller Playlet depuis le navigateur</translation>
+        <source>Use BlueTube Remote in the browser</source>
+        <translation>Controller BlueTube depuis le navigateur</translation>
     </message>
     <message>
         <source>Link with Wi-Fi</source>
@@ -633,8 +633,8 @@
         <translation>Connecter avec code TV</translation>
     </message>
     <message>
-        <source>Cast from the YouTube app to Playlet</source>
-        <translation>Diffusion depuis YouTube vers Playlet</translation>
+        <source>Cast from the YouTube app to BlueTube</source>
+        <translation>Diffusion depuis YouTube vers BlueTube</translation>
     </message>
     <message>
         <source>On your phone, connect to the same Wi-Fi network as this device.</source>
@@ -781,8 +781,8 @@
         <translation>Effacer l&apos;historique de recherche</translation>
     </message>
     <message>
-        <source>Clear search history from Playlet. This affects the search suggestions. This does not affect the watch history on Invidious.</source>
-        <translation>Effacer l&apos;historique de recherche de Playlet. Cela affecte les suggestions de recherche. Cela n&apos;affecte pas l&apos;historique de visionnage sur Invidious.</translation>
+        <source>Clear search history from BlueTube. This affects the search suggestions. This does not affect the watch history on Invidious.</source>
+        <translation>Effacer l&apos;historique de recherche de BlueTube. Cela affecte les suggestions de recherche. Cela n&apos;affecte pas l&apos;historique de visionnage sur Invidious.</translation>
     </message>
     <message>
         <source>Search history cleared.</source>
@@ -821,12 +821,12 @@
         <translation>Préférences du développeur</translation>
     </message>
     <message>
-        <source>Playlet Library version</source>
-        <translation>Version de Playlet Library</translation>
+        <source>BlueTube Library version</source>
+        <translation>Version de BlueTube Library</translation>
     </message>
     <message>
-        <source>The version of Playlet Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled.</source>
-        <translation>La version de Playlet Lib à utiliser. Celles-ci correspondent aux versions taguées sur Github. Les versions qui n&apos;ont pas de fichier playlet-lib.zip sont désactivées.</translation>
+        <source>The version of BlueTube Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled.</source>
+        <translation>La version de BlueTube Lib à utiliser. Celles-ci correspondent aux versions taguées sur Github. Les versions qui n&apos;ont pas de fichier playlet-lib.zip sont désactivées.</translation>
     </message>
     <message>
         <source>Loading</source>
@@ -977,8 +977,8 @@
         <translation>Instance Invidious à utiliser. Exemple : https://example.com. Trouvez plus d&apos;instances sur %INVIDIOUS_PUBLIC_INSTANCES%</translation>
     </message>
     <message>
-        <source>Thank you for using Playlet.</source>
-        <translation>Merci d&apos;utiliser Playlet.</translation>
+        <source>Thank you for using BlueTube.</source>
+        <translation>Merci d&apos;utiliser BlueTube.</translation>
     </message>
     <message>
         <source>You have feedback? Let us know by %IssueStart%creating an issue on Github%IssueEnd% or by %EmailStart%sending an email%EmailEnd%.</source>
@@ -993,16 +993,16 @@
         <translation>Appliquer</translation>
     </message>
     <message>
-        <source>Are you sure you want to change the Playlet Library version to %1?</source>
-        <translation>Êtes-vous sûr de vouloir changer la version de Playlet Lib en %1 ?</translation>
+        <source>Are you sure you want to change the BlueTube Library version to %1?</source>
+        <translation>Êtes-vous sûr de vouloir changer la version de BlueTube Lib en %1 ?</translation>
     </message>
     <message>
-        <source>This will restart Playlet.</source>
-        <translation>Cela redémarrera Playlet.</translation>
+        <source>This will restart BlueTube.</source>
+        <translation>Cela redémarrera BlueTube.</translation>
     </message>
     <message>
-        <source>Playlet Library version changed. Playlet will now restart.</source>
-        <translation>La version de Playlet Lib a été modifiée. Playlet va maintenant redémarrer.</translation>
+        <source>BlueTube Library version changed. BlueTube will now restart.</source>
+        <translation>La version de BlueTube Lib a été modifiée. BlueTube va maintenant redémarrer.</translation>
     </message>
     <message>
         <source>Error with login, please refresh the page.</source>

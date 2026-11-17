@@ -33,20 +33,20 @@
 
                     <SettingCategory
                         id="WebAppButton"
-                        displayText="Playlet Web App"
-                        description="Use Playlet Remote in the browser"
+                        displayText="BlueTube Web App"
+                        description="Use BlueTube Remote in the browser"
                         maxWidth="540" />
 
                     <SettingCategory
                         id="LinkWithWiFiButton"
                         displayText="Link with Wi-Fi"
-                        description="Cast from the YouTube app to Playlet"
+                        description="Cast from the YouTube app to BlueTube"
                         maxWidth="540" />
 
                     <SettingCategory
                         id="LinkWithTvButton"
                         displayText="Link with TV code"
-                        description="Cast from the YouTube app to Playlet"
+                        description="Cast from the YouTube app to BlueTube"
                         maxWidth="540" />
                 </LayoutGroup>
 
@@ -119,7 +119,7 @@
                         </Label>
                         <Label
                             id="WifiNameLabel"
-                            color="#4287f5"
+                            color="#3EA6FF"
                             translation="[0,250]">
                             <Font role="font" uri="font:MediumSystemFontFile" size="28" />
                         </Label>
@@ -163,7 +163,7 @@
                         <Label
                             id="LinkCodeLabel"
                             font="font:LargeBoldSystemFont"
-                            color="#4287f5">
+                            color="#3EA6FF">
                             <Font role="font" uri="font:MediumSystemFontFile" size="48" />
                         </Label>
                     </LayoutGroup>

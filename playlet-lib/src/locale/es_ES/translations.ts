@@ -149,8 +149,8 @@
         <translation>Por favor, ten en cuenta que una cuenta de Invidious es diferente de una cuenta de YouTube.</translation>
     </message>
     <message>
-        <source>Do you want to exit Playlet?</source>
-        <translation>¿Quieres salir de Playlet?</translation>
+        <source>Do you want to exit BlueTube?</source>
+        <translation>¿Quieres salir de BlueTube?</translation>
     </message>
     <message>
         <source>Sort %1 by</source>
@@ -213,20 +213,20 @@
         <translation>Error de configuración del servicio Lounge</translation>
     </message>
     <message>
-        <source>Failed to get screen ID. Please restart Playlet to use the cast function.</source>
-        <translation>No se pudo obtener el ID de tu pantalla. Por favor reinicia Playlet para usar la función de transmitir.</translation>
+        <source>Failed to get screen ID. Please restart BlueTube to use the cast function.</source>
+        <translation>No se pudo obtener el ID de tu pantalla. Por favor reinicia BlueTube para usar la función de transmitir.</translation>
     </message>
     <message>
         <source>Not a valid screen id: %1</source>
         <translation>Id de pantalla no válida: %1</translation>
     </message>
     <message>
-        <source>Failed to get lounge token. Please restart Playlet to use the cast function.</source>
-        <translation>No se ha podido obtener el token dela sala. Por favor, reinicia Playlet para utilizar la función de la transmisión.</translation>
+        <source>Failed to get lounge token. Please restart BlueTube to use the cast function.</source>
+        <translation>No se ha podido obtener el token dela sala. Por favor, reinicia BlueTube para utilizar la función de la transmisión.</translation>
     </message>
     <message>
-        <source>Failed to get session data. Please restart Playlet to use the cast function.</source>
-        <translation>No se han podido obtener los datos de la sesión. Por favor, reinicia Playlet para utilizar la función de transmisión.</translation>
+        <source>Failed to get session data. Please restart BlueTube to use the cast function.</source>
+        <translation>No se han podido obtener los datos de la sesión. Por favor, reinicia BlueTube para utilizar la función de transmisión.</translation>
     </message>
     <message>
         <source>Invalid response: %1</source>
@@ -561,8 +561,8 @@
         <translation>No hay Marcadores</translation>
     </message>
     <message>
-        <source>This will restart Playlet.</source>
-        <translation>Esto reiniciará Playlet.</translation>
+        <source>This will restart BlueTube.</source>
+        <translation>Esto reiniciará BlueTube.</translation>
     </message>
     <message>
         <source>Open Playlist</source>
@@ -633,8 +633,8 @@
         <translation>Añadir a la cola</translation>
     </message>
     <message>
-        <source>Thank you for using Playlet.</source>
-        <translation>Gracias por usar Playlet.</translation>
+        <source>Thank you for using BlueTube.</source>
+        <translation>Gracias por usar BlueTube.</translation>
     </message>
     <message>
         <source>Latest (default)</source>
@@ -865,12 +865,12 @@
         <translation>No se pudo obtener la dirección IP: ¿estás conectado a internet?</translation>
     </message>
     <message>
-        <source>Playlet Web App</source>
-        <translation>Aplicación web de Playlet</translation>
+        <source>BlueTube Web App</source>
+        <translation>Aplicación web de BlueTube</translation>
     </message>
     <message>
-        <source>Use Playlet Remote in the browser</source>
-        <translation>Utiliza el control remoto de Playlet en el navegador</translation>
+        <source>Use BlueTube Remote in the browser</source>
+        <translation>Utiliza el control remoto de BlueTube en el navegador</translation>
     </message>
     <message>
         <source>Link with Wi-Fi</source>
@@ -969,8 +969,8 @@
         <translation>Hace 1 año</translation>
     </message>
     <message>
-        <source>Cast from the YouTube app to Playlet</source>
-        <translation>Transmitir desde la aplicación YouTube a Playlet</translation>
+        <source>Cast from the YouTube app to BlueTube</source>
+        <translation>Transmitir desde la aplicación YouTube a BlueTube</translation>
     </message>
     <message>
         <source>Tap the cast icon and select %1</source>
@@ -1037,8 +1037,8 @@
         <translation>Mostrar notificaciones cuando se salte una sección</translation>
     </message>
     <message>
-        <source>Clear search history from Playlet. This affects the search suggestions. This does not affect the watch history on Invidious.</source>
-        <translation>Borrar el historial de búsqueda de Playlet. Esto afectará a las sugerencias. Esto no afectará al historial de reproducción de Invidious.</translation>
+        <source>Clear search history from BlueTube. This affects the search suggestions. This does not affect the watch history on Invidious.</source>
+        <translation>Borrar el historial de búsqueda de BlueTube. Esto afectará a las sugerencias. Esto no afectará al historial de reproducción de Invidious.</translation>
     </message>
     <message>
         <source>Error closing video</source>
@@ -1205,12 +1205,12 @@
         <translation>Otras configuraciones</translation>
     </message>
     <message>
-        <source>Playlet Library version</source>
-        <translation>Versión de la biblioteca Playlet</translation>
+        <source>BlueTube Library version</source>
+        <translation>Versión de la biblioteca BlueTube</translation>
     </message>
     <message>
-        <source>The version of Playlet Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled.</source>
-        <translation>La versión de Playlet Lib que se utilizará. Estas corresponden a las versiones etiquetadas en Github. Las versiones que no tienen un archivo playlet-lib.zip están deshabilitadas.</translation>
+        <source>The version of BlueTube Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled.</source>
+        <translation>La versión de BlueTube Lib que se utilizará. Estas corresponden a las versiones etiquetadas en Github. Las versiones que no tienen un archivo playlet-lib.zip están deshabilitadas.</translation>
     </message>
     <message>
         <source>Interaction Reminder (Subscribe)</source>
@@ -1221,16 +1221,16 @@
         <translation>Recordatorio de interacción</translation>
     </message>
     <message>
-        <source>Are you sure you want to change the Playlet Library version to %1?</source>
-        <translation>¿Estás seguro de que deseas cambiar la versión de la biblioteca Playlet a %1?</translation>
+        <source>Are you sure you want to change the BlueTube Library version to %1?</source>
+        <translation>¿Estás seguro de que deseas cambiar la versión de la biblioteca BlueTube a %1?</translation>
     </message>
     <message>
         <source>Filler</source>
         <translation>Relleno</translation>
     </message>
     <message>
-        <source>Playlet Library version changed. Playlet will now restart.</source>
-        <translation>Se modificó la versión de la biblioteca Playlet. Playlet ahora se reiniciará.</translation>
+        <source>BlueTube Library version changed. BlueTube will now restart.</source>
+        <translation>Se modificó la versión de la biblioteca BlueTube. BlueTube ahora se reiniciará.</translation>
     </message>
     <message>
         <source>Features</source>
@@ -1297,12 +1297,12 @@
         <translation>Descargo de responsabilidad</translation>
     </message>
     <message>
-        <source>Playlet is a third-party app and is not affiliated with, endorsed by, or sponsored by YouTube or Google. All trademarks and registered trademarks mentioned are the property of their respective owners and are used only for identification purposes.</source>
-        <translation>Playlet es una aplicación de terceros y no está afiliada, respaldada ni patrocinada por YouTube ni Google. Todas las marcas comerciales y marcas registradas mencionadas son propiedad de sus respectivos dueños y se utilizan únicamente con fines de identificación.</translation>
+        <source>BlueTube is a third-party app and is not affiliated with, endorsed by, or sponsored by YouTube or Google. All trademarks and registered trademarks mentioned are the property of their respective owners and are used only for identification purposes.</source>
+        <translation>BlueTube es una aplicación de terceros y no está afiliada, respaldada ni patrocinada por YouTube ni Google. Todas las marcas comerciales y marcas registradas mencionadas son propiedad de sus respectivos dueños y se utilizan únicamente con fines de identificación.</translation>
     </message>
     <message>
-        <source>By using Playlet and signing in with your YouTube account, you acknowledge that you do so at your own risk. The developers of Playlet are not liable for any harm, including but not limited to data loss, account suspension or ban, hacking, or loss of content.</source>
-        <translation>Al usar Playlet e iniciar sesión con tu cuenta de YouTube, aceptas hacerlo bajo tu propia responsabilidad. Los desarrolladores de Playlet no se hacen responsables de ningún daño, incluyendo, entre otros, la pérdida de datos, la suspensión o el bloqueo de la cuenta, el pirateo informático o la pérdida de contenido.</translation>
+        <source>By using BlueTube and signing in with your YouTube account, you acknowledge that you do so at your own risk. The developers of BlueTube are not liable for any harm, including but not limited to data loss, account suspension or ban, hacking, or loss of content.</source>
+        <translation>Al usar BlueTube e iniciar sesión con tu cuenta de YouTube, aceptas hacerlo bajo tu propia responsabilidad. Los desarrolladores de BlueTube no se hacen responsables de ningún daño, incluyendo, entre otros, la pérdida de datos, la suspensión o el bloqueo de la cuenta, el pirateo informático o la pérdida de contenido.</translation>
     </message>
     <message>
         <source>Use responsibly, especially if your YouTube account is tied to business or monetization.</source>
@@ -1361,8 +1361,8 @@
         <translation>Desactivar videos shorts.</translation>
     </message>
     <message>
-        <source>Playlet built-in backend</source>
-        <translation>Servidor integrado de Playlet</translation>
+        <source>BlueTube built-in backend</source>
+        <translation>Servidor integrado de BlueTube</translation>
     </message>
     <message>
         <source>Categories</source>
@@ -1417,8 +1417,8 @@
         <translation>Habilitar diagnósticos</translation>
     </message>
     <message>
-        <source>Help improve Playlet by enabling diagnostics. This will send anonymous diagnotics data to the developer.</source>
-        <translation>Ayuda a mejorar Playlet activando las herramientas de diagnóstico. Esto enviará datos de diagnóstico anónimos al desarrollador.</translation>
+        <source>Help improve BlueTube by enabling diagnostics. This will send anonymous diagnotics data to the developer.</source>
+        <translation>Ayuda a mejorar BlueTube activando las herramientas de diagnóstico. Esto enviará datos de diagnóstico anónimos al desarrollador.</translation>
     </message>
 </context>
 </TS>

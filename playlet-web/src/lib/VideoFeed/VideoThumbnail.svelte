@@ -75,7 +75,7 @@
     </div>
   {:else if isVideoLive()}
     <div
-      class="absolute bottom-2 right-0 bg-red-500 text-white text-sm rounded-sm font-bold pt-1 pb-1 pr-2 pl-2"
+      class="absolute bottom-2 right-0 bg-primary text-primary-content text-sm rounded-sm font-bold pt-1 pb-1 pr-2 pl-2"
     >
       {$translate("LIVE")}
     </div>
@@ -88,7 +88,7 @@
   {/if}
   {#if percentDurationWatched}
     <div
-      class="absolute left-0 bottom-0 h-1 bg-red-600 rounded-box"
+      class="absolute left-0 bottom-0 h-1 bg-primary rounded-box"
       style="width: {Math.min(percentDurationWatched, 100)}%;"
     ></div>
   {/if}

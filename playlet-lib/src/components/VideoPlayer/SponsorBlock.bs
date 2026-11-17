@@ -54,7 +54,7 @@ namespace SponsorBlock
         barPath = info.data.barPath
         if barPath <> invalid
             m.top.trickPlayBar.trackImageUri = barPath
-            m.top.trickPlayBar.filledBarBlendColor = "#FF000080"
+            m.top.trickPlayBar.filledBarBlendColor = "#3EA6FF80"
         end if
 
         m.top.ObserveFieldScoped("position", FuncName(OnPositionChangeSkipSponsorBlockSections))

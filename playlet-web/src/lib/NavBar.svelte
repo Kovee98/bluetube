@@ -54,7 +54,7 @@
 
 <div class="bg-base-100 sticky top-0 z-40 flex items-center min-w-0 px-2 h-16">
   <div class="flex flex-col items-center justify-center min-w-0 mr-2">
-    <button on:click={() => ExternalControlProtocol.launchApp(appId)}>
+    <button aria-label="Launch BlueTube" on:click={() => ExternalControlProtocol.launchApp(appId)}>
       {#if $appThemeStore === "dark"}
         <PlayletLogoDark />
       {:else}

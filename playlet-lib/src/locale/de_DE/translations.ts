@@ -53,8 +53,8 @@
         <translation>Wählen Sie ein Video, eine Wiedergabeliste oder einen Kanal, um Lesezeichen hinzuzufügen.</translation>
     </message>
     <message>
-        <source>Playlet Library version changed. Playlet will now restart.</source>
-        <translation>Die Playlet Library Version hat sich geändert. Playlet startet nun neu.</translation>
+        <source>BlueTube Library version changed. BlueTube will now restart.</source>
+        <translation>Die BlueTube Library Version hat sich geändert. BlueTube startet nun neu.</translation>
     </message>
     <message>
         <source>We didn&apos;t find any results for your search. Please try again with a different query or different filters.</source>
@@ -73,8 +73,8 @@
         <translation>Fehler beim Setup des Lounge-Services</translation>
     </message>
     <message>
-        <source>Failed to get lounge token. Please restart Playlet to use the cast function.</source>
-        <translation>Lounge Token konnte nicht geladen werden. Bitte starten Sie Playlet erneut, um die Cast-Funktion nutzen zu können.</translation>
+        <source>Failed to get lounge token. Please restart BlueTube to use the cast function.</source>
+        <translation>Lounge Token konnte nicht geladen werden. Bitte starten Sie BlueTube erneut, um die Cast-Funktion nutzen zu können.</translation>
     </message>
     <message>
         <source>name</source>
@@ -121,8 +121,8 @@
         <translation>IP Adresse nicht gefunden: ist dieses Gerät mit dem Internet verbunden?</translation>
     </message>
     <message>
-        <source>Cast from the YouTube app to Playlet</source>
-        <translation>Von der YouTube App zu Playlet mithilfe der Cast-Funktion übertragen</translation>
+        <source>Cast from the YouTube app to BlueTube</source>
+        <translation>Von der YouTube App zu BlueTube mithilfe der Cast-Funktion übertragen</translation>
     </message>
     <message>
         <source>Loading...</source>
@@ -165,8 +165,8 @@
         <translation>Suchverlauf gelöscht.</translation>
     </message>
     <message>
-        <source>Clear search history from Playlet. This affects the search suggestions. This does not affect the watch history on Invidious.</source>
-        <translation>Löscht den Suchverlauf von Playlet. Führt zu veränderten Suchvorschlägen. Dies hat keinen Einfluss auf den Wiedergabeverlauf auf Invidious.</translation>
+        <source>Clear search history from BlueTube. This affects the search suggestions. This does not affect the watch history on Invidious.</source>
+        <translation>Löscht den Suchverlauf von BlueTube. Führt zu veränderten Suchvorschlägen. Dies hat keinen Einfluss auf den Wiedergabeverlauf auf Invidious.</translation>
     </message>
     <message>
         <source>Edit home screen</source>
@@ -177,8 +177,8 @@
         <translation>Abschnitte auf der Startseite aktivieren/deaktivieren und verschieben</translation>
     </message>
     <message>
-        <source>The version of Playlet Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled.</source>
-        <translation>Die Version der Playlet Library, die genutzt werden soll. Die Versionen entsprechen den markierten Releases auf GitHub. Releases, die die Datei playlet-lib.zip nicht enthalten, sind deaktiviert.</translation>
+        <source>The version of BlueTube Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled.</source>
+        <translation>Die Version der BlueTube Library, die genutzt werden soll. Die Versionen entsprechen den markierten Releases auf GitHub. Releases, die die Datei playlet-lib.zip nicht enthalten, sind deaktiviert.</translation>
     </message>
     <message>
         <source>Request not sent.</source>
@@ -373,8 +373,8 @@
         <translation>Beachten Sie, dass ein Invidious-Benutzerkonto nicht das gleiche wie ein YouTube-Benutzerkonto ist.</translation>
     </message>
     <message>
-        <source>Do you want to exit Playlet?</source>
-        <translation>Wollen Sie Playlet verlassen?</translation>
+        <source>Do you want to exit BlueTube?</source>
+        <translation>Wollen Sie BlueTube verlassen?</translation>
     </message>
     <message>
         <source>Sort %1 by</source>
@@ -425,8 +425,8 @@
         <translation>Feed konnte nicht geladen werden</translation>
     </message>
     <message>
-        <source>Failed to get screen ID. Please restart Playlet to use the cast function.</source>
-        <translation>Bildschirm ID konnte nicht gefunden werden. Bitte starten sie Playlet neu, um die Cast-Funktion nutzen zu können.</translation>
+        <source>Failed to get screen ID. Please restart BlueTube to use the cast function.</source>
+        <translation>Bildschirm ID konnte nicht gefunden werden. Bitte starten sie BlueTube neu, um die Cast-Funktion nutzen zu können.</translation>
     </message>
     <message>
         <source>Not a valid screen id: %1</source>
@@ -437,8 +437,8 @@
         <translation>Ungültige Antwort: %1</translation>
     </message>
     <message>
-        <source>Failed to get session data. Please restart Playlet to use the cast function.</source>
-        <translation>Session-Daten konnten nicht geladen werden. Bitte starten Sie Playlet neu, um die Cast-Funktion nutzen zu können.</translation>
+        <source>Failed to get session data. Please restart BlueTube to use the cast function.</source>
+        <translation>Session-Daten konnten nicht geladen werden. Bitte starten Sie BlueTube neu, um die Cast-Funktion nutzen zu können.</translation>
     </message>
     <message>
         <source>Invidious custom instance</source>
@@ -645,12 +645,12 @@
         <translation>Beachten Sie, dass es sich bei Lesezeichen um eine experimentelle Funktion handelt.</translation>
     </message>
     <message>
-        <source>Playlet Web App</source>
-        <translation>Playlet Web App</translation>
+        <source>BlueTube Web App</source>
+        <translation>BlueTube Web App</translation>
     </message>
     <message>
-        <source>Use Playlet Remote in the browser</source>
-        <translation>Playlet Fernbedienung im Browser nutzen</translation>
+        <source>Use BlueTube Remote in the browser</source>
+        <translation>BlueTube Fernbedienung im Browser nutzen</translation>
     </message>
     <message>
         <source>Link with Wi-Fi</source>
@@ -737,8 +737,8 @@
         <translation>Kapitel</translation>
     </message>
     <message>
-        <source>Thank you for using Playlet.</source>
-        <translation>Danke, dass Sie Playlet nutzen.</translation>
+        <source>Thank you for using BlueTube.</source>
+        <translation>Danke, dass Sie BlueTube nutzen.</translation>
     </message>
     <message>
         <source>Device connected</source>
@@ -753,8 +753,8 @@
         <translation>Anwenden</translation>
     </message>
     <message>
-        <source>Are you sure you want to change the Playlet Library version to %1?</source>
-        <translation>Möchten Sie die Playlet Library Version wirklich zu %1 ändern?</translation>
+        <source>Are you sure you want to change the BlueTube Library version to %1?</source>
+        <translation>Möchten Sie die BlueTube Library Version wirklich zu %1 ändern?</translation>
     </message>
     <message>
         <source>Error with login, please refresh the page.</source>
@@ -1065,8 +1065,8 @@
         <translation>Entwicklereinstellungen</translation>
     </message>
     <message>
-        <source>Playlet Library version</source>
-        <translation>Playlet Library Version</translation>
+        <source>BlueTube Library version</source>
+        <translation>BlueTube Library Version</translation>
     </message>
     <message>
         <source>Loading</source>
@@ -1137,8 +1137,8 @@
         <translation>Haben Sie Feedback? Machen Sie uns mit einem %IssueStart%GitHub Issue%IssueEnd% oder mit einer %EmailStart%Email%EmailEnd% darauf aufmerksam.</translation>
     </message>
     <message>
-        <source>This will restart Playlet.</source>
-        <translation>Dies wird Playlet neustarten.</translation>
+        <source>This will restart BlueTube.</source>
+        <translation>Dies wird BlueTube neustarten.</translation>
     </message>
     <message>
         <source>Profiles</source>
@@ -1253,8 +1253,8 @@
         <translation>Kurse</translation>
     </message>
     <message>
-        <source>Playlet built-in backend</source>
-        <translation>Playlet eingebautes Backend</translation>
+        <source>BlueTube built-in backend</source>
+        <translation>BlueTube eingebautes Backend</translation>
     </message>
     <message>
         <source>Recommended</source>
@@ -1349,12 +1349,12 @@
         <translation>Kategorien</translation>
     </message>
     <message>
-        <source>Playlet is a third-party app and is not affiliated with, endorsed by, or sponsored by YouTube or Google. All trademarks and registered trademarks mentioned are the property of their respective owners and are used only for identification purposes.</source>
-        <translation>Playlet ist eine Drittanbieter-App, wird weder von YouTube noch von Google unterstützt, empfohlen oder gesponsert und steht in keiner Verbindung zu diesen. Alle hier erwähnten (eingetragenen) Marken sind geistiges Eigentum ihrer jeweiligen Besitzer und werden nur zu Identifikationszwecken genutzt.</translation>
+        <source>BlueTube is a third-party app and is not affiliated with, endorsed by, or sponsored by YouTube or Google. All trademarks and registered trademarks mentioned are the property of their respective owners and are used only for identification purposes.</source>
+        <translation>BlueTube ist eine Drittanbieter-App, wird weder von YouTube noch von Google unterstützt, empfohlen oder gesponsert und steht in keiner Verbindung zu diesen. Alle hier erwähnten (eingetragenen) Marken sind geistiges Eigentum ihrer jeweiligen Besitzer und werden nur zu Identifikationszwecken genutzt.</translation>
     </message>
     <message>
-        <source>By using Playlet and signing in with your YouTube account, you acknowledge that you do so at your own risk. The developers of Playlet are not liable for any harm, including but not limited to data loss, account suspension or ban, hacking, or loss of content.</source>
-        <translation>Die Benutzung von Playlet und das Anmelden mit einem YouTube-Benutzerkonto erfolgt auf Ihr eigenes Risiko hin. Die Entwickler von Playlet sind für jedwegen Schaden, inklusive (aber nicht ausschließlich) dem Verlust von Daten, der Sperrung/ Inaktivierung von Benutzerkonten und Hacking, nicht haftbar oder verantwortlich.</translation>
+        <source>By using BlueTube and signing in with your YouTube account, you acknowledge that you do so at your own risk. The developers of BlueTube are not liable for any harm, including but not limited to data loss, account suspension or ban, hacking, or loss of content.</source>
+        <translation>Die Benutzung von BlueTube und das Anmelden mit einem YouTube-Benutzerkonto erfolgt auf Ihr eigenes Risiko hin. Die Entwickler von BlueTube sind für jedwegen Schaden, inklusive (aber nicht ausschließlich) dem Verlust von Daten, der Sperrung/ Inaktivierung von Benutzerkonten und Hacking, nicht haftbar oder verantwortlich.</translation>
     </message>
     <message>
         <source>Select option for %1</source>
@@ -1373,8 +1373,8 @@
         <translation>Auf YouTube öffnen</translation>
     </message>
     <message>
-        <source>Help improve Playlet by enabling diagnostics. This will send anonymous diagnotics data to the developer.</source>
-        <translation>Helfen Sie mit, Playlet zu verbessern, indem Sie die diagnostische Datenerhebung aktivieren. Diese wird dem Entwickler anonymisierte Nutzungsdaten schicken.</translation>
+        <source>Help improve BlueTube by enabling diagnostics. This will send anonymous diagnotics data to the developer.</source>
+        <translation>Helfen Sie mit, BlueTube zu verbessern, indem Sie die diagnostische Datenerhebung aktivieren. Diese wird dem Entwickler anonymisierte Nutzungsdaten schicken.</translation>
     </message>
     <message>
         <source>Enable Diagnostics</source>

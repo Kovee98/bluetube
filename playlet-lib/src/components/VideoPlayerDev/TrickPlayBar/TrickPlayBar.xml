@@ -29,7 +29,7 @@
         <!-- same asset tinted red, clipped to progress width in code. -->
         <Poster id="trackFill"
             uri="/RokuOS/Artwork/SceneGraph/FixedTheme/Base/FHD/osd_sliderControl_small.9.png"
-            width="1144" height="12" blendColor="0xFF1C30FF" clippingRect="[0,0,0,12]" loadDisplayMode="noScale" />
+            width="1144" height="12" blendColor="0x3EA6FFFF" clippingRect="[0,0,0,12]" loadDisplayMode="noScale" />
         <!-- the cursor: a 12px dot that swells half-again while the bar tier holds focus. PositionPlayhead
              moves it; the grow/shrink animations scale it about its center. -->
         <Poster id="playhead"
@@ -62,7 +62,7 @@
         <!-- LIVE bullet: shown only at the edge. -->
         <Poster id="bullet" visible="false"
             uri="/RokuOS/Artwork/SceneGraph/FixedTheme/Base/FHD/icon_inline_unselected_bullet.webp"
-            translation="[1056, 24]" blendColor="0xD53E5AFF" loadDisplayMode="noScale" />
+            translation="[1056, 24]" blendColor="0x3EA6FFFF" loadDisplayMode="noScale" />
         <!-- LIVE badge: shown only at the edge. -->
         <Label id="liveLabel" visible="false" translation="[1080, 24]" height="30"
             text="LIVE" color="0xFEFEFEFF" horizAlign="left" vertAlign="top">

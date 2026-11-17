@@ -5,7 +5,7 @@ function SetScenePalette(scene as object)
         DialogFocusColor: "#CECECEFF"
         DialogFocusItemColor: "#202020FF"
         DialogSecondaryTextColor: "#EBEBEBFF"
-        DialogSecondaryItemColor: "#FF1C30FF"
+        DialogSecondaryItemColor: "#3EA6FFFF"
         DialogTextColor: "#EBEBEBFF"
     }
     scene.palette = palette

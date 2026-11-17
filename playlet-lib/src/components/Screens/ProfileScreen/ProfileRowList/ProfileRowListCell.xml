@@ -50,7 +50,7 @@
                     id="circlePosterInner"
                     width="152"
                     height="152"
-                    blendColor="#9696C8"
+                    blendColor="#3EA6FF"
                     uri="pkg:/images/white-circle.png"
                     translation="[4,4]">
                     <Label

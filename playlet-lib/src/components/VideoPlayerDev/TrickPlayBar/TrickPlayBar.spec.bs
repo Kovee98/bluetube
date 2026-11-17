@@ -269,7 +269,7 @@ namespace Tests
 
         @it("applies the SB fill blend over the captured red")
         function _()
-            m.top.sbFillBlend = "#FF000080"
+            m.top.sbFillBlend = "#3EA6FF80"
             m.AssertBlend(m.top.findNode("trackFill").blendColor, &hFF000080)
         end function
 

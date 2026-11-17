@@ -7,6 +7,7 @@ const { existsSync, writeFileSync, readFileSync } = require('fs');
 const json5 = require('json5');
 const md5 = require('crypto-js/md5');
 const path = require('path');
+const { gzipSync } = require('zlib');
 
 const META_EXT = '.meta.json5';
 
@@ -35,8 +36,23 @@ const META_EXT = '.meta.json5';
         await generateImages(svgFile, meta, metafile, force);
     }
 
+    generateWebFavicon();
     console.log('Done.');
 })();
+
+function generateWebFavicon() {
+    const png = readFileSync('playlet-lib/src/images/logo-fav.png');
+    const header = Buffer.alloc(22);
+    header.writeUInt16LE(1, 2); // ICO type
+    header.writeUInt16LE(1, 4); // One PNG image
+    header[6] = png.readUInt32BE(16);
+    header[7] = png.readUInt32BE(20);
+    header.writeUInt16LE(1, 10);
+    header.writeUInt16LE(32, 12);
+    header.writeUInt32LE(png.length, 14);
+    header.writeUInt32LE(header.length, 18);
+    writeFileSync('playlet-web/public/favicon.ico.gz', gzipSync(Buffer.concat([header, png])));
+}
 
 function findSvgFiles() {
     return [
@@ -117,7 +133,9 @@ function checkFileHash(file, hash) {
 
 async function generateImage(inputImage, options, rootDir) {
     const opts = {
-        launch: { channel: 'chrome' },
+        launch: process.env.PUPPETEER_EXECUTABLE_PATH
+            ? { executablePath: process.env.PUPPETEER_EXECUTABLE_PATH }
+            : { channel: 'chrome' },
         ...options
     };
     opts.outputFilePath = path.join(rootDir, opts.outputFilePath);

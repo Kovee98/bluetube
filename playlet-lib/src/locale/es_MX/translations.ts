@@ -105,8 +105,8 @@
         <translation>Escanea el código QR</translation>
     </message>
     <message>
-        <source>Do you want to exit Playlet?</source>
-        <translation>Quieres salir de Playlet?</translation>
+        <source>Do you want to exit BlueTube?</source>
+        <translation>Quieres salir de BlueTube?</translation>
     </message>
     <message>
         <source>Latest</source>
@@ -161,8 +161,8 @@
         <translation>Para agregar favoritos, escoge un video, playlist o canal, y agrégalo a tus favoritos.</translation>
     </message>
     <message>
-        <source>Thank you for using Playlet.</source>
-        <translation>Gracias por usar Playlet.</translation>
+        <source>Thank you for using BlueTube.</source>
+        <translation>Gracias por usar BlueTube.</translation>
     </message>
     <message>
         <source>Updated 1 minute ago</source>
@@ -229,8 +229,8 @@
         <translation>Borrar historial de búsqueda</translation>
     </message>
     <message>
-        <source>Clear search history from Playlet. This affects the search suggestions. This does not affect the watch history on Invidious.</source>
-        <translation>Borrar historial de búsqueda de Playlet. Esto solo afecta las sugerencias de búsqueda. Esto no afecta el historial de búsqueda en Invidious.</translation>
+        <source>Clear search history from BlueTube. This affects the search suggestions. This does not affect the watch history on Invidious.</source>
+        <translation>Borrar historial de búsqueda de BlueTube. Esto solo afecta las sugerencias de búsqueda. Esto no afecta el historial de búsqueda en Invidious.</translation>
     </message>
     <message>
         <source>Search history cleared.</source>
@@ -453,8 +453,8 @@
         <translation>Se estrena en ^n días</translation>
     </message>
     <message>
-        <source>Use Playlet Remote in the browser</source>
-        <translation>Usa Playlet de forma remota en el navegador</translation>
+        <source>Use BlueTube Remote in the browser</source>
+        <translation>Usa BlueTube de forma remota en el navegador</translation>
     </message>
     <message>
         <source>Link with TV code</source>
@@ -841,8 +841,8 @@
         <translation>No se pudieron cargar las instancias públicas de Invidious</translation>
     </message>
     <message>
-        <source>Failed to get screen ID. Please restart Playlet to use the cast function.</source>
-        <translation>No se pudo obtener el ID de tu pantalla. Por favor reinicia Playlet para usar la función de transmitir.</translation>
+        <source>Failed to get screen ID. Please restart BlueTube to use the cast function.</source>
+        <translation>No se pudo obtener el ID de tu pantalla. Por favor reinicia BlueTube para usar la función de transmitir.</translation>
     </message>
     <message>
         <source>Not a valid screen id: %1</source>
@@ -901,12 +901,12 @@
         <translation>URL válida</translation>
     </message>
     <message>
-        <source>Cast from the YouTube app to Playlet</source>
-        <translation>Transmite de la app de Youtube a Playlet</translation>
+        <source>Cast from the YouTube app to BlueTube</source>
+        <translation>Transmite de la app de Youtube a BlueTube</translation>
     </message>
     <message>
-        <source>Playlet Web App</source>
-        <translation>Aplicación Web Playlet</translation>
+        <source>BlueTube Web App</source>
+        <translation>Aplicación Web BlueTube</translation>
     </message>
     <message>
         <source>Tap the cast icon.</source>
@@ -937,20 +937,20 @@
         <translation>Solicitud cancelada.</translation>
     </message>
     <message>
-        <source>Playlet Library version changed. Playlet will now restart.</source>
-        <translation>Versión de Playlet Library cambiada. Playlet ahora se reiniciará.</translation>
+        <source>BlueTube Library version changed. BlueTube will now restart.</source>
+        <translation>Versión de BlueTube Library cambiada. BlueTube ahora se reiniciará.</translation>
     </message>
     <message>
         <source>Latest (default)</source>
         <translation>Más reciente (por defecto)</translation>
     </message>
     <message>
-        <source>Failed to get lounge token. Please restart Playlet to use the cast function.</source>
-        <translation>No se ha podido obtener el token de Lounge. Por favor reinicia Playlet para usar la función de transmión.</translation>
+        <source>Failed to get lounge token. Please restart BlueTube to use the cast function.</source>
+        <translation>No se ha podido obtener el token de Lounge. Por favor reinicia BlueTube para usar la función de transmión.</translation>
     </message>
     <message>
-        <source>Failed to get session data. Please restart Playlet to use the cast function.</source>
-        <translation>No se han podido obtener los datos de sesión. Por favor reinicia Playlet para usar la función de transmisión.</translation>
+        <source>Failed to get session data. Please restart BlueTube to use the cast function.</source>
+        <translation>No se han podido obtener los datos de sesión. Por favor reinicia BlueTube para usar la función de transmisión.</translation>
     </message>
     <message>
         <source>Invidious custom instance</source>
@@ -1077,12 +1077,12 @@
         <translation>Preferencias de desarrollador</translation>
     </message>
     <message>
-        <source>Playlet Library version</source>
-        <translation>Versión de Playlet Library</translation>
+        <source>BlueTube Library version</source>
+        <translation>Versión de BlueTube Library</translation>
     </message>
     <message>
-        <source>The version of Playlet Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled.</source>
-        <translation>La versión de Playlet Library a utilizar. Estas corresponden a versiones etiquetadas en Github. Las versiones que no tienen un archivo playlet-lib.zip están deshabilitadas.</translation>
+        <source>The version of BlueTube Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled.</source>
+        <translation>La versión de BlueTube Library a utilizar. Estas corresponden a versiones etiquetadas en Github. Las versiones que no tienen un archivo playlet-lib.zip están deshabilitadas.</translation>
     </message>
     <message>
         <source>Failed to load video information for %1</source>
@@ -1105,12 +1105,12 @@
         <translation>Tienes algún comentario? Háznoslo saber %IssueStart%creando un &quot;issue&quot; en Github%IssueEnd% o al %EmailStart%enviarnos un email%EmailEnd%.</translation>
     </message>
     <message>
-        <source>Are you sure you want to change the Playlet Library version to %1?</source>
-        <translation>Estás seguro de que quieres cambiar la versión de Playlet Library a %1?</translation>
+        <source>Are you sure you want to change the BlueTube Library version to %1?</source>
+        <translation>Estás seguro de que quieres cambiar la versión de BlueTube Library a %1?</translation>
     </message>
     <message>
-        <source>This will restart Playlet.</source>
-        <translation>Esto reiniciará Playlet.</translation>
+        <source>This will restart BlueTube.</source>
+        <translation>Esto reiniciará BlueTube.</translation>
     </message>
     <message>
         <source>Queue on %1</source>
@@ -1189,8 +1189,8 @@
         <translation>Cursos</translation>
     </message>
     <message>
-        <source>Playlet built-in backend</source>
-        <translation>Backend de Playlet</translation>
+        <source>BlueTube built-in backend</source>
+        <translation>Backend de BlueTube</translation>
     </message>
     <message>
         <source>Filler</source>

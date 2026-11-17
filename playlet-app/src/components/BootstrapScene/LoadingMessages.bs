@@ -2,7 +2,7 @@ function GetLoadingMessage() as string
     messages = GetLoadingMessagesFromCache()
     if messages = invalid or messages.count() = 0
         messages = [
-            "Now loading Playlet...",
+            "Now loading BlueTube...",
             "One moment please...",
             "Downloading the internet...",
             "Unclogging the tubes...",
@@ -29,7 +29,7 @@ function GetLoadingMessage() as string
         ]
     end if
     index = GetRandom(0, messages.count() - 1)
-    return messages[index]
+    return messages[index].Replace("Playlet", "BlueTube")
 end function
 
 function GetLoadingMessagesFromCache() as object

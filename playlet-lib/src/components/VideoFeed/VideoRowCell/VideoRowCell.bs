@@ -65,7 +65,7 @@ function OnContentSet() as void
             SetDurationLabel(Tr(Locale.RowCell.Upcoming), "#161616FF", 0.8, m.smallestBoldSystemFont)
             m.top.durationRectVisible = true
         else if content.liveNow
-            SetDurationLabel(Tr(Locale.RowCell.Live), "#CC0000FF", 0.9, m.smallestBoldSystemFont)
+            SetDurationLabel(Tr(Locale.RowCell.Live), "#3EA6FFFF", 0.9, m.smallestBoldSystemFont)
             m.top.durationRectVisible = true
         else
             m.top.durationRectVisible = false

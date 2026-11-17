@@ -27,7 +27,7 @@ function SetScenePalette(scene as object) as void
         DialogFocusColor: "#CECECEFF"
         DialogFocusItemColor: "#202020FF"
         DialogSecondaryTextColor: "#EBEBEBFF"
-        DialogSecondaryItemColor: "#FF1C30FF"
+        DialogSecondaryItemColor: "#3EA6FFFF"
         DialogTextColor: "#EBEBEBFF"
     }
     scene.palette = palette
@@ -66,7 +66,7 @@ function ShowAnnouncement() as boolean
         messageId: "1755469284"
         title: "Playback fixes - Canary build"
         message: [
-            "Thank you for helping test the latest changes by using the Canary build of Playlet!"
+            "Thank you for helping test the latest changes by using the Canary build of BlueTube!"
             "If you encounter any issues with playback, please report them on the GitHub issue tracker."
             "https://github.com/iBicha/playlet/issues"
         ]

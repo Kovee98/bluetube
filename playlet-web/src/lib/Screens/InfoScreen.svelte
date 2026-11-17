@@ -9,31 +9,31 @@
   const displayNames = [
     {
       key: "app_version",
-      displayText: "Playlet App Version",
+      displayText: "BlueTube App Version",
     },
     {
       key: "lib_version",
-      displayText: "Playlet Library Version",
+      displayText: "BlueTube Library Version",
     },
     {
       key: "lib_version_latest",
-      displayText: "Playlet Library Latest Version",
+      displayText: "BlueTube Library Latest Version",
     },
     {
       key: "lib_url",
-      displayText: "Playlet Library URL",
+      displayText: "BlueTube Library URL",
     },
     {
       key: "lib_url_type",
-      displayText: "Playlet Library URL Type",
+      displayText: "BlueTube Library URL Type",
     },
     {
       key: "app_git_commit_hash",
-      displayText: "Playlet App Git Commit Hash",
+      displayText: "BlueTube App Git Commit Hash",
     },
     {
       key: "lib_git_commit_hash",
-      displayText: "Playlet Library Git Commit Hash",
+      displayText: "BlueTube Library Git Commit Hash",
     },
     {
       key: "id",
@@ -97,7 +97,7 @@
   let invidiousInfo = {};
   let preferencesInfo = {};
   let profilesInfo = {};
-  const feedbackTitle = encodeURIComponent("[Feedback] Playlet");
+  const feedbackTitle = encodeURIComponent("[Feedback] BlueTube");
   let githubUrlIssue = "https://github.com/iBicha/playlet/issues/new";
   let mailToUrl = "mailto:brahim.hadriche@gmail.com";
   const feedbackMessageRaw =
@@ -247,7 +247,7 @@ ${JSON.stringify(profilesInfo, null, 2)}
 
 <div class={visibility ? "" : "hidden"}>
   <div class="text-base text-center m-8">
-    {$translate("Thank you for using Playlet.")}
+    {$translate("Thank you for using BlueTube.")}
     <br />
     {@html $translate(feedbackMessageRaw)
       .replace(

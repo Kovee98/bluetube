@@ -99,10 +99,10 @@
     if (
       !confirm(
         trFn(
-          "Are you sure you want to change the Playlet Library version to %1?"
+          "Are you sure you want to change the BlueTube Library version to %1?"
         ).replace("%1", version) +
           `\n` +
-          trFn("This will restart Playlet.")
+          trFn("This will restart BlueTube.")
       )
     ) {
       return;
@@ -126,22 +126,22 @@
       console.error(error);
       alert(
         trFn(
-          "Failed to change the Playlet Library version. Please try again. See console for details."
+          "Failed to change the BlueTube Library version. Please try again. See console for details."
         )
       );
       return;
     }
 
-    alert(trFn("Playlet Library version changed. Playlet will now restart."));
+    alert(trFn("BlueTube Library version changed. BlueTube will now restart."));
     await ExternalControlProtocol.restartApp(appId);
   }
 </script>
 
 <div class="m-5">
-  <div class="text-lg">{$translate("Playlet Library version")}</div>
+  <div class="text-lg">{$translate("BlueTube Library version")}</div>
   <div class="text-xs text-gray-500">
     {$translate(
-      "The version of Playlet Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled."
+      "The version of BlueTube Lib to use. These correspond to tagged releases on Github. Releases that do not have a playlet-lib.zip file are disabled."
     )}
   </div>
 
