@@ -12,6 +12,8 @@ Run `npm run convert-images` after changing the Roku SVGs to regenerate the post
 splash screens, and library PNGs. The converter uses Chrome by default; set
 `PUPPETEER_EXECUTABLE_PATH` to an installed Chromium/Edge executable if necessary.
 The web favicon uses `playlet-web/public/favicon.svg`.
+The Roku navigation shows the standalone icon when collapsed and only the full
+BlueTube logo/wordmark when expanded, so the two logo images never overlap.
 
 The GitHub repository is now `Kovee98/bluetube`. The npm packages, release filenames (`playlet-app.zip` and
 `playlet-lib.zip`), `PlayletLib` component namespace, registry sections, API routes,

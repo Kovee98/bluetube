@@ -37,7 +37,7 @@
                 width="106"
                 height="42"
                 translation="[16, 48]"
-                opacity="0"
+                visible="false"
                 uri="pkg:/images/logo-dark.png">
                 <AppVersionLabel
                     fontUri="font:BoldSystemFontFile"
@@ -68,11 +68,6 @@
                 key="[0.0, 0.5, 1.0]"
                 keyValue="[0.0, 0.5, 1.0]"
                 fieldToInterp="SideBar.opacity" />
-            <FloatFieldInterpolator
-                id="LogoFadeInterpolator"
-                key="[0.0, 0.5, 1.0]"
-                keyValue="[0.0, 0.5, 1.0]"
-                fieldToInterp="Logo.opacity" />
             <FloatFieldInterpolator
                 id="BackgroundFadeInterpolator"
                 key="[0.0, 0.5, 1.0]"

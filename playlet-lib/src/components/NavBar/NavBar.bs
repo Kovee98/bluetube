@@ -8,10 +8,11 @@ function Init()
     m.sideBar = m.top.findNode("SideBar")
     m.background = m.top.findNode("Background")
     m.itemsList = m.top.findNode("ItemsList")
+    m.logoFav = m.top.findNode("LogoFav")
+    m.logo = m.top.findNode("Logo")
 
     m.fadeAnimation = m.top.findNode("FadeAnimation")
     m.sideBarFadeInterpolator = m.top.findNode("SideBarFadeInterpolator")
-    m.logoBarFadeInterpolator = m.top.findNode("LogoFadeInterpolator")
     m.backgroundFadeInterpolator = m.top.findNode("BackgroundFadeInterpolator")
 end function
 
@@ -72,6 +73,8 @@ function OnFocusedChildChange() as void
     m.lastIsInFocusChain = isInFocusChain
 
     m.sideBar.visible = isInFocusChain
+    m.logoFav.visible = not isInFocusChain
+    m.logo.visible = isInFocusChain
 
     if isInFocusChain
         m.screensContainer.animateToPosition = m.top.screenOffset
@@ -81,7 +84,6 @@ function OnFocusedChildChange() as void
 
     m.fadeAnimation.control = "stop"
     m.sideBarFadeInterpolator.reverse = not isInFocusChain
-    m.logoBarFadeInterpolator.reverse = not isInFocusChain
     m.backgroundFadeInterpolator.reverse = not isInFocusChain
     m.fadeAnimation.control = "start"
 end function
