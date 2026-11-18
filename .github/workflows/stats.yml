@@ -5,41 +5,64 @@ on:
     - cron: "0 9 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update_wiki_stats:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      HAS_STATS_CREDENTIALS: ${{ secrets.EMAIL != '' && secrets.EMAIL_APP_PASSWORD != '' }}
     steps:
+      - name: Explain missing stats configuration
+        if: env.HAS_STATS_CREDENTIALS != 'true'
+        run: echo "::notice::Skipping wiki stats update. Initialize the repository wiki and configure the EMAIL and EMAIL_APP_PASSWORD secrets to enable publishing."
+
       - name: Checkout
+        if: env.HAS_STATS_CREDENTIALS == 'true'
         uses: actions/checkout@v4
 
       - name: Checkout Wiki
+        if: env.HAS_STATS_CREDENTIALS == 'true'
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository }}.wiki
           path: ./playlet.wiki
 
       - name: Configure repo
+        if: env.HAS_STATS_CREDENTIALS == 'true'
         run: |
           git config --local user.email "githubaction@githubaction.com"
           git config --local user.name "github-action wiki updater"
         working-directory: ./playlet.wiki
 
       - name: Use Node.js 22.x
+        if: env.HAS_STATS_CREDENTIALS == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 22.x
           cache: "npm"
 
       - name: Install dependencies
+        if: env.HAS_STATS_CREDENTIALS == 'true'
         run: npm ci
 
-      - name: Download attachements
+      - name: Download attachments
+        if: env.HAS_STATS_CREDENTIALS == 'true'
         run: node tools/download-stats.js
         env:
           EMAIL: ${{ secrets.EMAIL }}
           EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
 
       - name: Update wiki
-        run: git add "." && git commit -m "Update stats" --no-verify && git push || true
+        if: env.HAS_STATS_CREDENTIALS == 'true'
+        run: |
+          git add --all
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No wiki changes to publish."
+            exit 0
+          fi
+          git commit -m "Update stats" --no-verify
+          git push
         working-directory: ./playlet.wiki

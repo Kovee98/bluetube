@@ -1,6 +1,21 @@
 # Screenshots
 
-## Playlet
+## BlueTube
+
+The browser companion screenshots use demo data; the Roku splash is the
+artwork included with the app.
+
+| All subscriptions | Channel view |
+| --- | --- |
+| ![Combined subscription feed with new-upload dots and watch progress](./bluetube-subscriptions.png) | ![Subscription feed filtered to Trail Journal](./bluetube-subscription-channel.png) |
+
+| Roku splash screen | Browser SponsorBlock settings |
+| --- | --- |
+| ![BlueTube Roku splash screen](../../playlet-app/src/images/splash-screen_fhd.jpg) | ![SponsorBlock skip settings](./bluetube-sponsorblock.png) |
+
+## Roku (upstream Playlet)
+
+The screenshots below show features inherited from Playlet in the original branding.
 
 | Home                | Search                  |
 | ------------------- | ----------------------- |
@@ -26,7 +41,7 @@
 | ----------------------- | ------------------- |
 | ![Remote](./remote.jpg) | ![Info](./info.jpg) |
 
-## Playlet web app
+## Browser companion (upstream Playlet)
 
 | Home                               | Search                                 | Settings                                   |
 | ---------------------------------- | -------------------------------------- | ------------------------------------------ |

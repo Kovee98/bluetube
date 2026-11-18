@@ -26,25 +26,57 @@
 
 BlueTube is an unofficial YouTube client for Roku, forked from
 [Playlet by iBicha and contributors](https://github.com/iBicha/playlet).
-It adds a channel-based Subscriptions view and blue branding. It is not affiliated
-with YouTube or Google.
+It is not affiliated with YouTube or Google.
 
-The repository is now [Kovee98/bluetube](https://github.com/Kovee98/bluetube).
-Release assets retain their `playlet` filenames for update compatibility. Saved
-library URLs using the previous repository name are migrated on startup by the
-updated app; existing profiles and settings are unchanged.
+## What's new since Playlet
+
+- **Subscriptions on Roku and in the browser companion.** Sign in with a Roku
+  profile, then open **Subscriptions** to see a combined **All** feed or switch to
+  a single channel. Use **Refresh** to check for new uploads.
+- **See what changed and pick up where you left off.** Blue dots mark channels
+  with unseen uploads and clear when you open the channel. The channel list
+  prioritizes recent uploads, with a small boost for channels you watch often.
+  When watch history is available, video cards show resume progress.
+- **BlueTube branding and releases.** The Roku tile, splash screen, navigation,
+  and browser companion have a new blue look. Updates come from
+  [BlueTube releases](https://github.com/Kovee98/bluetube/releases). Package
+  filenames still use `playlet`, and compatible saved library URLs are migrated
+  on startup without clearing profiles or settings.
 
 
 ## Screenshots
 
-  <a href="./docs/screenshots/README.md">
+### BlueTube on Roku and in the browser
 
-| [![Home](docs/screenshots/home.jpg)](docs/screenshots/README.md) | [![Search](docs/screenshots/search.jpg)](docs/screenshots/README.md) | [![Settings](docs/screenshots/settings.jpg)](docs/screenshots/README.md) |
-| ---------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+The browser screenshots use demo data. The Roku splash shows the new branding.
 
-  </a>
+| All subscriptions: new-upload dots and watch progress | Channel view: videos from just one subscription |
+| --- | --- |
+| ![BlueTube subscriptions with a combined feed, blue dots, and watch progress](docs/screenshots/bluetube-subscriptions.png) | ![BlueTube subscriptions filtered to Trail Journal](docs/screenshots/bluetube-subscription-channel.png) |
 
-More under [Screenshots](./docs/screenshots/README.md)
+| BlueTube's Roku splash screen | SponsorBlock settings in the browser companion |
+| --- | --- |
+| ![BlueTube splash screen with a blue play icon and wordmark](playlet-app/src/images/splash-screen_fhd.jpg) | ![SponsorBlock settings for enabling skips, notifications, and categories](docs/screenshots/bluetube-sponsorblock.png) |
+
+### Features inherited from Playlet
+
+These screenshots show the original Playlet styling; the features are still
+available in BlueTube.
+
+| Browse and search | Bookmarks and playlists |
+| --- | --- |
+| ![Roku search results](docs/screenshots/search.jpg) | ![Saved bookmarks on Roku](docs/screenshots/bookmarks.jpg) |
+
+| Playback queue and picture-in-picture | Phone remote and casting |
+| --- | --- |
+| ![Roku playback queue with the current video in picture-in-picture](docs/screenshots/queue-pic-in-pic.jpg) | ![Phone browser controls for casting a video to Roku](docs/screenshots/webapp-cast.png) |
+
+| YouTube and Invidious profiles | Invidious backend settings |
+| --- | --- |
+| ![Roku profile selector](docs/screenshots/profiles.jpg) | ![Roku Invidious instance settings](docs/screenshots/invidious-settings.jpg) |
+
+See the [full screenshot gallery](./docs/screenshots/README.md) for more Roku and
+browser views.
 
 ## Installation
 

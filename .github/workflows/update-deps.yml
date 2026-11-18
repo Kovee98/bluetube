@@ -8,6 +8,8 @@ on:
 jobs:
   update_deps:
     runs-on: ubuntu-latest
+    env:
+      HAS_PR_TOKEN: ${{ secrets.GH_TOKEN != '' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,8 +26,13 @@ jobs:
       - name: Update dependencies
         run: npm run update-deps
 
+      - name: Explain missing PR configuration
+        if: env.HAS_PR_TOKEN != 'true'
+        run: echo "::notice::Dependency update ran, but no pull request will be opened without the GH_TOKEN secret."
+
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+        if: env.HAS_PR_TOKEN == 'true'
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "update dependencies"
           branch: chore/update-deps

@@ -91,6 +91,7 @@ This document contains various kinds of information related to Playlet developme
     - [In case of a softlock](#in-case-of-a-softlock)
 - [CI/CD](#cicd)
   - [Release assets (fork)](#release-assets-fork)
+  - [Scheduled maintenance](#scheduled-maintenance)
 
 ## Environment setup
 
@@ -472,3 +473,17 @@ Sideload `playlet-app.zip` only when the app shell itself changed. To rebuild th
 of an existing release, run the workflow manually from the Actions tab with its tag.
 
 `npm run build:unsigned` can also be run locally; the packages land in `release/`.
+
+### Scheduled maintenance
+
+These workflows are maintenance jobs, not test runs. Both keep their schedules and
+can also be run manually from the Actions tab.
+
+- **Stats** runs daily. To publish Roku reports, enable the repository wiki and
+  create its first page, then add the `EMAIL` and `EMAIL_APP_PASSWORD` Actions
+  secrets for the mailbox that receives the reports. Without both secrets, the
+  workflow records a notice and skips the wiki update.
+- **Update Dependencies** runs weekly. It checks for npm updates even without
+  credentials. To open the resulting PR, add a `GH_TOKEN` Actions secret with
+  write access to repository contents and pull requests. Without it, the
+  workflow records a notice and skips PR creation.
