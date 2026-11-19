@@ -1,4 +1,6 @@
+import "pkg:/components/VideoPlayerDev/PlayerCoordinatorLogic.bs"
 import "pkg:/components/VideoPlayerDev/TransportController.bs"
+import "pkg:/source/utils/Locale.bs"
 import "pkg:/source/utils/Types.bs"
 
 ' Trackbar track spans x=68..1212: right cluster right-aligns to 1212, center cluster centers on 640.
@@ -6,20 +8,27 @@ const ROW_Y = 560
 const BUTTON_WIDTH = 42
 const BUTTON_SPACING = 20
 const SCREEN_CENTER_X = 640
+const TRACKBAR_LEFT_X = 68
 const TRACKBAR_RIGHT_X = 1212
 
 function Init()
-    ' Focus order MUST match PlayerCoordinatorLogic.PlayerButton (playPause=0, minimize=1).
+    ' Focus order matches PlayerCoordinatorLogic.PlayerButton.
     m.buttons = [
+        m.top.findNode("CaptionsButton")
+        m.top.findNode("CommentsButton")
+        m.top.findNode("LikeButton")
+        m.top.findNode("SaveButton")
         m.top.findNode("PlayPauseButton")
         m.top.findNode("MinimizeButton")
     ]
+    m.leftCluster = m.top.findNode("LeftCluster")
     m.centerCluster = m.top.findNode("CenterCluster")
     m.rightCluster = m.top.findNode("RightCluster")
+    m.actionHint = m.top.findNode("actionHint")
     LayoutClusters()
     m.top.buttonCount = m.buttons.Count() ' coordinator reads this to clamp focus
 
-    for each field in ["transportMode", "rowFocused", "focusedIndex", "playing"]
+    for each field in ["transportMode", "rowFocused", "focusedIndex", "playing", "captionsAvailable", "captionsOn", "liked"]
         m.top.ObserveField(field, FuncName(Repaint))
     end for
     m.top.ObserveField("nudge", FuncName(OnNudge))
@@ -37,8 +46,10 @@ end function
 ' Position the buttons inside each cluster and the clusters on screen, all from child count, so adding a
 ' button auto-positions without hardcoded offsets.
 function LayoutClusters() as void
+    LayoutButtons(m.leftCluster)
     LayoutButtons(m.centerCluster)
     LayoutButtons(m.rightCluster)
+    m.leftCluster.translation = [TRACKBAR_LEFT_X, ROW_Y]
     m.centerCluster.translation = [SCREEN_CENTER_X - ClusterWidth(m.centerCluster) / 2, ROW_Y]
     m.rightCluster.translation = [TRACKBAR_RIGHT_X - ClusterWidth(m.rightCluster), ROW_Y]
 end function
@@ -62,9 +73,40 @@ function Repaint() as void
     ' fades the parent group, so visible=true with a hidden parent stays unpainted.
     m.top.visible = (m.top.transportMode = TransportController.Mode.Idle)
 
-    m.buttons[0].toggleState = not m.top.playing ' toggleState false = play icon, true = pause icon
+    m.buttons[PlayerCoordinatorLogic.PlayerButton.PlayPause].toggleState = not m.top.playing
+    m.buttons[PlayerCoordinatorLogic.PlayerButton.Captions].iconColor = "#DDDDDDFF"
+    if m.top.captionsOn
+        m.buttons[PlayerCoordinatorLogic.PlayerButton.Captions].iconColor = "#3EA6FFFF"
+    end if
+    m.buttons[PlayerCoordinatorLogic.PlayerButton.Like].iconColor = "#DDDDDDFF"
+    if m.top.liked
+        m.buttons[PlayerCoordinatorLogic.PlayerButton.Like].iconColor = "#3EA6FFFF"
+    end if
 
     for i = 0 to m.buttons.Count() - 1
         m.buttons[i].focused = m.top.rowFocused and i = m.top.focusedIndex
     end for
+    hint = ""
+    index = m.top.focusedIndex
+    if index = PlayerCoordinatorLogic.PlayerButton.Captions
+        hint = Tr(Locale.Library.NoCaptions)
+        if m.top.captionsAvailable
+            hint = Tr(Locale.Library.CaptionsOn)
+            if m.top.captionsOn
+                hint = Tr(Locale.Library.CaptionsOff)
+            end if
+        end if
+    else if index = PlayerCoordinatorLogic.PlayerButton.Comments
+        hint = Tr(Locale.Library.Comments)
+    else if index = PlayerCoordinatorLogic.PlayerButton.Like
+        hint = Tr(Locale.Library.Like)
+        if m.top.liked
+            hint = Tr(Locale.Library.Unlike)
+        end if
+    else if index = PlayerCoordinatorLogic.PlayerButton.Save
+        hint = Tr(Locale.Library.Save)
+    end if
+    m.actionHint.translation = [TRACKBAR_LEFT_X + index * (BUTTON_WIDTH + BUTTON_SPACING), ROW_Y - 30]
+    m.actionHint.text = hint
+    m.actionHint.visible = m.top.rowFocused and hint <> ""
 end function

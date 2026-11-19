@@ -1,0 +1,140 @@
+import "pkg:/components/Services/Innertube/NextEndpoint.bs"
+import "pkg:/components/Services/Invidious/InvidiousService.bs"
+import "pkg:/source/utils/ObjectUtils.bs"
+
+@job("VideoCommentsJob")
+function ExecuteJob() as void
+    input = JobGetInput()
+    service = new Invidious.InvidiousService(input.invidious)
+    instance = service.GetInstance()
+    token = ValidString(input.continuation)
+    cancellation = JobGetCancellation()
+    if instance = Invidious.PLAYLET_BUILT_IN_INSTANCE
+        if token = ""
+            response = Innertube.CreateNextRequest({ videoId: input.videoId }).Cancellation(cancellation).Await()
+            if not response.IsSuccess()
+                JobError(response.ErrorMessage())
+                return
+            end if
+            token = FindCommentEntry(response.Json())
+            if token = ""
+                JobSuccessData({ comments: [], continuation: "" })
+                return
+            end if
+        end if
+        response = Innertube.CreateNextRequest({ continuation: token }).Cancellation(cancellation).Await()
+        if not response.IsSuccess()
+            JobError(response.ErrorMessage())
+            return
+        end if
+        JobSuccessData(ParseYouTubeComments(response.Json()))
+    else
+        request = HttpClient.Get(`${instance}/api/v1/comments/${input.videoId}`).Cancellation(cancellation)
+        if token <> ""
+            request.QueryParam("continuation", token)
+        end if
+        response = request.Await()
+        if not response.IsSuccess()
+            JobError(response.ErrorMessage())
+            return
+        end if
+        payload = response.Json()
+        if not IsAssociativeArray(payload) or not IsArray(payload.comments)
+            JobError("Invalid comments response")
+            return
+        end if
+        comments = []
+        for each comment in payload.comments
+            AddComment(comments, comment.author, comment.content)
+        end for
+        JobSuccessData({ comments: comments, continuation: ValidString(payload.continuation) })
+    end if
+end function
+
+function FindCommentEntry(value as dynamic) as string
+    if IsAssociativeArray(value)
+        section = value.itemSectionRenderer
+        if section <> invalid and (section.targetId = "comments-section" or section.sectionIdentifier = "comment-item-section")
+            for each item in ValidArray(section.contents)
+                token = CommentContinuation(item)
+                if token <> ""
+                    return token
+                end if
+            end for
+        end if
+        panel = value.engagementPanelSectionListRenderer
+        if panel <> invalid and panel.targetId = "engagement-panel-comments-section"
+            token = ValidString(ObjectUtils.Dig(panel, ["content", "sectionListRenderer", "contents", 0, "continuationItemRenderer", "continuationEndpoint", "continuationCommand", "token"]))
+            if token <> ""
+                return token
+            end if
+        end if
+        for each key in value
+            token = FindCommentEntry(value[key])
+            if token <> ""
+                return token
+            end if
+        end for
+    else if IsArray(value)
+        for each entry in value
+            token = FindCommentEntry(entry)
+            if token <> ""
+                return token
+            end if
+        end for
+    end if
+    return ""
+end function
+
+function CommentContinuation(item as object) as string
+    return ValidString(ObjectUtils.Dig(item, ["continuationItemRenderer", "continuationEndpoint", "continuationCommand", "token"]))
+end function
+
+function ParseYouTubeComments(payload as object) as object
+    comments = []
+    entities = {}
+    mutations = ValidArray(ObjectUtils.Dig(payload, ["frameworkUpdates", "entityBatchUpdate", "mutations"]))
+    for each mutation in mutations
+        entity = ObjectUtils.Dig(mutation, ["payload", "commentEntityPayload"])
+        if entity <> invalid and ValidString(entity.key) <> ""
+            entities[entity.key] = entity
+        end if
+    end for
+    commands = ValidArray(ObjectUtils.Dig(payload, ["onResponseReceivedEndpoints"]))
+    continuation = ""
+    for each command in commands
+        action = command.appendContinuationItemsAction
+        if action = invalid
+            action = command.reloadContinuationItemsCommand
+        end if
+        if action = invalid
+            continue for
+        end if
+        for each item in ValidArray(action.continuationItems)
+            thread = item.commentThreadRenderer
+            if thread <> invalid
+                key = ValidString(ObjectUtils.Dig(thread, ["commentViewModel", "commentViewModel", "commentKey"]))
+                entity = entities[key]
+                if entity <> invalid
+                    AddComment(comments, ObjectUtils.Dig(entity, ["author", "displayName"]), ObjectUtils.Dig(entity, ["properties", "content", "content"]))
+                else
+                    legacy = ObjectUtils.Dig(thread, ["comment", "commentRenderer"])
+                    if legacy <> invalid
+                        AddComment(comments, Innertube.ParseText(legacy.authorText), Innertube.ParseText(legacy.contentText))
+                    end if
+                end if
+            end if
+            token = CommentContinuation(item)
+            if token <> "" and (action.targetId = "comments-section" or action.targetId = "engagement-panel-comments-section")
+                continuation = token
+            end if
+        end for
+    end for
+    return { comments: comments, continuation: continuation }
+end function
+
+function AddComment(comments as object, author as dynamic, text as dynamic) as void
+    if ValidString(text) <> ""
+        comments.Push({ author: Left(ValidString(author), 120), text: Left(text, 900) })
+    end if
+end function

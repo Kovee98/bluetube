@@ -7,6 +7,7 @@ import "pkg:/components/VideoPlayer/Lounge.bs"
 import "pkg:/components/VideoPlayerDev/ErrorDialogController.bs"
 import "pkg:/components/VideoPlayerDev/PlaybackTelemetry.bs"
 import "pkg:/components/VideoPlayerDev/PlayerCoordinatorLogic.bs"
+import "pkg:/components/VideoPlayerDev/PlayerLibraryActions.bs"
 import "pkg:/components/VideoPlayerDev/SponsorBlockController.bs"
 import "pkg:/components/VideoPlayerDev/TransportController.bs"
 import "pkg:/components/VideoPlayerDev/VideoNode.bs"
@@ -68,7 +69,7 @@ function Initialize()
     m.firstFrameSeen = false
     m.showFullScreenHint = false
     m.focusTarget = PlayerCoordinatorLogic.FocusTarget.Bar
-    m.focusedButton = 0
+    m.focusedButton = PlayerCoordinatorLogic.PlayerButton.PlayPause
     m.armedTimerId = TransportController.Timer.None ' which module timer the single transportTimer holds
     m.lastCommitSeq = 0
     m.lastFinishSeq = 0
@@ -161,6 +162,8 @@ function OnNodeReady()
 
     m.container.observeFieldScoped("fullscreen", FuncName(OnFullScreenChange))
     m.top.ObserveField("state", FuncName(OnVideoState))
+    m.top.ObserveField("globalCaptionMode", FuncName(SyncCaptions))
+    m.top.ObserveField("availableSubtitleTracks", FuncName(SyncCaptions))
     m.top.ObserveField("position", FuncName(OnPosition))
     m.top.ObserveField("duration", FuncName(OnDuration))
     m.top.ObserveField("close", FuncName(OnClose))
@@ -550,11 +553,47 @@ end function
 function ActivateButton(index as integer) as void
     if index = PlayerCoordinatorLogic.PlayerButton.PlayPause
         TogglePlayPause()
+    else if index = PlayerCoordinatorLogic.PlayerButton.Captions
+        if m.buttonRow.captionsAvailable
+            if m.top.globalCaptionMode = "On"
+                m.top.globalCaptionMode = "Off"
+            else
+                if ValidString(m.top.subtitleTrack) = ""
+                    tracks = ValidArray(m.top.availableSubtitleTracks)
+                    if tracks.Count() = 0 and m.top.content <> invalid
+                        tracks = ValidArray(m.top.content.SubtitleTracks)
+                    end if
+                    if tracks.Count() > 0 and ValidString(tracks[0].TrackName) <> ""
+                        m.top.subtitleTrack = tracks[0].TrackName
+                    end if
+                end if
+                m.top.globalCaptionMode = "On"
+            end if
+        end if
+        SyncCaptions()
+    else if index = PlayerCoordinatorLogic.PlayerButton.Comments
+        OpenPlayerComments()
+    else if index = PlayerCoordinatorLogic.PlayerButton.Like
+        UpdateLibraryLike()
+    else if index = PlayerCoordinatorLogic.PlayerButton.Save
+        OpenLibrarySave()
     else if index = PlayerCoordinatorLogic.PlayerButton.Minimize
         MinimizeReset()
         VideoQueueUtils.ToggleVideoPictureInPicture(m.videoQueue)
     end if
     SyncFocus()
+    if m.container.fullscreen and m.actionDialog = invalid and m.chromeMode = ChromeMode.Shown
+        ArmAutoHide()
+    end if
+end function
+
+function SyncCaptions() as void
+    tracks = ValidArray(m.top.availableSubtitleTracks)
+    if tracks.Count() = 0 and m.top.content <> invalid
+        tracks = ValidArray(m.top.content.SubtitleTracks)
+    end if
+    m.buttonRow.captionsAvailable = tracks.Count() > 0
+    m.buttonRow.captionsOn = m.buttonRow.captionsAvailable and m.top.globalCaptionMode = "On"
 end function
 
 ' Push the focus state to the renderers. The button row highlights its focused button while the BUTTON tier
@@ -753,6 +792,8 @@ function OnVideoState(event as object) as void
         ' first frame -> the module's ready gate opens; drop the loading overlay.
         if not m.firstFrameSeen
             m.firstFrameSeen = true
+            RememberLibraryVideo()
+            SyncCaptions()
             m.transport.OnReady()
             m.spinner.mode = SpinMode.Off
             LogInfo("first frame: ready=true, loading overlay off")
@@ -993,6 +1034,9 @@ function OnFullScreenChange() as void
         return
     end if
     fullscreen = m.container.fullscreen
+    if not fullscreen
+        ClosePlayerActionDialog()
+    end if
     LogDebug("fullscreen ->", fullscreen)
     ' the SponsorBlock notification rides with the player: hidden while minimized, shown when full.
     m.sponsorblock.SetVisible(fullscreen)
@@ -1137,6 +1181,14 @@ function StartVideoContentJob(videoContentNode as object)
     end if
 
     m.top.content = videoContentNode
+    m.libraryProfileKey = LibraryStore.ProfileKey(m.top.profilesService)
+    m.buttonRow.liked = false
+    if m.top.libraryService <> invalid
+        data = LibraryStore.Read(m.libraryProfileKey)
+        if data <> invalid
+            m.buttonRow.liked = LibraryStore.IndexOf(data.liked, videoContentNode.videoId) >= 0
+        end if
+    end if
     m.top.content.ObserveField("title", FuncName(OnContentMetaChange))
     m.top.content.ObserveField("secondaryTitle", FuncName(OnContentMetaChange))
     UpdateOverlayMeta()
@@ -1499,6 +1551,7 @@ function OnClose() as void
         return
     end if
     m.onCloseCalled = true
+    ClosePlayerActionDialog()
     m.top.previousPlayer = invalid
     m.playbackTelemetry.SendSummary()
 
@@ -1509,6 +1562,8 @@ function OnClose() as void
     ' on this dead instance.
     m.container.unobserveFieldScoped("fullscreen")
     m.top.unobserveField("state")
+    m.top.unobserveField("globalCaptionMode")
+    m.top.unobserveField("availableSubtitleTracks")
     m.top.unobserveField("position")
     m.top.unobserveField("duration")
     m.top.unobserveField("thumbnailTiles")

@@ -17,12 +17,21 @@
         <field id="rowFocused" type="boolean" value="false" />
         <field id="focusedIndex" type="integer" value="0" />
         <field id="playing" type="boolean" value="true" /> <!-- selects the play vs pause icon -->
+        <field id="captionsOn" type="boolean" />
+        <field id="captionsAvailable" type="boolean" />
+        <field id="liked" type="boolean" />
         <field id="buttonCount" type="integer" value="0" /> <!-- read-only: set in Init from m.buttons -->
         <!-- pulse the focused button's scale nudge (a press that couldn't move focus: Left/Right clamped at
              the row's ends, Up at the top tier). -->
         <field id="nudge" type="boolean" alwaysNotify="true" />
     </interface>
     <children>
+        <Group id="LeftCluster">
+            <VideoPlayerButton id="CaptionsButton" glyph="CC" />
+            <VideoPlayerButton id="CommentsButton" glyph="Chat" />
+            <VideoPlayerButton id="LikeButton" iconUri="pkg:/images/icons/thumb-up.png" />
+            <VideoPlayerButton id="SaveButton" glyph="+" />
+        </Group>
         <!-- play/pause, centered on screen (x=640). -->
         <Group id="CenterCluster">
             <VideoPlayerButton id="PlayPauseButton"
@@ -34,5 +43,6 @@
             <VideoPlayerButton id="MinimizeButton"
                 iconUri="pkg:/images/icons/player/minimize.png" />
         </Group>
+        <Label id="actionHint" width="420" height="28" font="font:SmallestSystemFont" visible="false" />
     </children>
 </component>

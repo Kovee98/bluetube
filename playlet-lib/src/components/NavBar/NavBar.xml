@@ -28,22 +28,18 @@
 
             <Poster
                 id="LogoFav"
-                width="42"
-                height="42"
-                translation="[16, 48]"
+                width="46"
+                height="46"
+                translation="[8, 44]"
                 uri="pkg:/images/logo-fav.png" />
             <Poster
                 id="Logo"
-                width="106"
-                height="42"
-                translation="[16, 48]"
+                width="132"
+                height="52"
+                translation="[16, 42]"
                 visible="false"
-                uri="pkg:/images/logo-dark.png">
-                <AppVersionLabel
-                    fontUri="font:BoldSystemFontFile"
-                    fontSize="16"
-                    translation="[0, 48]" />
-            </Poster>
+                loadDisplayMode="scaleToFit"
+                uri="pkg:/images/logo-dark.png" />
 
             <MarkupList
                 id="ItemsList"
@@ -53,10 +49,10 @@
                 focusBitmapUri="pkg:/images/white.$$RES$$.9.png"
                 focusBitmapBlendColor="0x3EA6FFFF"
                 vertFocusAnimationStyle="floatingFocus"
-                numRows="8"
+                numRows="9"
                 scrollSpeed="99999"
-                itemSpacing="[0, 16]"
-                translation="[13, 150]">
+                itemSpacing="[0, 12]"
+                translation="[13, 130]">
             </MarkupList>
         </Rectangle>
 

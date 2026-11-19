@@ -1,0 +1,11 @@
+{
+  inputHash: '1ed2d78b3a0eddbf29f8524bffdd63e5',
+  outputs: [
+    {
+      outputFilePath: 'images/icons/thumb-up.png',
+      outputHash: '01c458dd435502cc15b2508d47c00957',
+      width: 48,
+      height: 48,
+    },
+  ],
+}

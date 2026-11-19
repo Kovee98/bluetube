@@ -47,8 +47,12 @@ namespace PlayerCoordinatorLogic
     ' The buttons in the row above the trackbar, in focus order (the index). The COUNT is owned by ButtonRow
     ' (m.buttons / its buttonCount field) — there is no separate count constant to keep in sync.
     enum PlayerButton
-        PlayPause = 0
-        Minimize = 1
+        Captions = 0
+        Comments = 1
+        Like = 2
+        Save = 3
+        PlayPause = 4
+        Minimize = 5
     end enum
 
     ' The two focus targets above/at the trackbar: the bar itself (Left/Right scrub, the cursor grows) and the

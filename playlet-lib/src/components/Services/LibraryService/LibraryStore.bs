@@ -1,0 +1,87 @@
+import "pkg:/source/utils/Locale.bs"
+import "pkg:/source/utils/Logging.bs"
+import "pkg:/source/utils/RegistryUtils.bs"
+import "pkg:/source/utils/StringUtils.bs"
+import "pkg:/source/utils/Types.bs"
+
+namespace LibraryStore
+    const REGISTRY_SECTION = "BlueTubeLibrary"
+    const HISTORY_LIMIT = 40
+    const PLAYLIST_LIMIT = 12
+
+    function ProfileKey(profilesService as object) as string
+        if profilesService = invalid
+            return "guest"
+        end if
+        profile = profilesService.currentProfile
+        if profile = invalid or ValidString(profile.id) = ""
+            return "guest"
+        end if
+        return "profile_" + profile.id
+    end function
+
+    function Read(key as string) as object
+        raw = RegistryUtils.Read(key, REGISTRY_SECTION)
+        if raw <> invalid
+            data = StringUtils.ParseJsonSafe(raw)
+            if IsAssociativeArray(data) and IsArray(data.liked) and IsArray(data.later) and IsArray(data.history) and IsArray(data.playlists)
+                return data
+            end if
+            LogWarn("Cannot read local Library data")
+            return invalid
+        end if
+        return { liked: [], later: [], history: [], playlists: [] }
+    end function
+
+    function Write(key as string, data as object) as boolean
+        section = CreateObject("roRegistrySection", REGISTRY_SECTION)
+        if not section.Write(key, FormatJson(data)) or not section.Flush()
+            LogWarn("Cannot persist local Library data")
+            return false
+        end if
+        return true
+    end function
+
+    function Video(content as object) as object
+        if content = invalid or ValidString(content.videoId) = ""
+            return invalid
+        end if
+        return {
+            videoId: content.videoId
+            title: Left(ValidString(content.title), 160)
+            author: Left(ValidString(content._author), 100)
+            authorId: ValidString(content.authorId)
+            lengthSeconds: content.lengthSeconds
+            liveNow: content.liveNow
+        }
+    end function
+
+    function IndexOf(items as object, videoId as string) as integer
+        for i = 0 to items.Count() - 1
+            if items[i].videoId = videoId
+                return i
+            end if
+        end for
+        return -1
+    end function
+
+    function UpdateItems(items as object, video as object, toggle as boolean) as void
+        index = IndexOf(items, video.videoId)
+        if index >= 0
+            items.Delete(index)
+            if toggle
+                return
+            end if
+        end if
+        items.Unshift(video)
+    end function
+
+    function FindPlaylist(data as object, name as string) as object
+        for each playlist in data.playlists
+            if LCase(playlist.title) = LCase(name)
+                return playlist
+            end if
+        end for
+        return invalid
+    end function
+end namespace

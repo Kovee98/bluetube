@@ -73,7 +73,7 @@ function TestSetup() as void
     ' nudge counter above — stacked observers fire a handler once per prior TestSetup on every write,
     ' and OnPosition's latency learning reads two identical fires as a CONFIRMED min-gap, poisoning
     ' LiveEdgeMs for any live test that runs after another test in the suite.
-    for each deviceField in ["state", "position", "duration", "close", "thumbnailTiles", "control", "setSeek", "bufferingStatus", "playStartInfo", "streamingSegment"]
+    for each deviceField in ["state", "position", "duration", "close", "thumbnailTiles", "control", "setSeek", "bufferingStatus", "playStartInfo", "streamingSegment", "globalCaptionMode", "availableSubtitleTracks"]
         m.top.unobserveField(deviceField)
     end for
 
@@ -85,6 +85,10 @@ function TestSetup() as void
     m.top.duration = 0
     m.top.seek = 0
     m.top.suppressCaptions = false ' a test that minimized leaves it set; the container below starts fullscreen
+    m.top.globalCaptionMode = "Off"
+    m.top.availableSubtitleTracks = []
+    m.top.subtitleTrack = ""
+    SyncCaptions()
     m.top.autoplayAfterSeek = true
 
     OnNodeReady()

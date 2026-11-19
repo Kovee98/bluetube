@@ -13,6 +13,7 @@
         <field id="focusedIconColor" type="color" value="#262626" />
 
         <field id="focused" type="boolean" value="false" />
+        <field id="glyph" type="string" alias="glyphLabel.text" />
         <!-- pulse the scale nudge: confirms a press that didn't move focus (Left/Right at the row's end,
              Up at the top tier). -->
         <field id="nudge" type="boolean" alwaysNotify="true" />
@@ -22,6 +23,7 @@
             <Poster id="background" uri="pkg:/images/icons/player/white-circle.png" width="42" height="42">
                 <Poster id="icon" width="42" height="42" />
                 <Poster id="icon2" width="42" height="42" visible="false" />
+                <Label id="glyphLabel" width="42" height="42" horizAlign="center" vertAlign="center" />
             </Poster>
         </Group>
         <!-- subtle ButtonEx-style scale pulse, played on focus gain and on `nudge`. -->

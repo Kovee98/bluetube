@@ -43,6 +43,19 @@ const CONTENT_ID = 'jNQXAC9IVRw'; // "Me at the zoo"
     await press(Key.Left);
     await expectField('#buttonRow.focusedIndex', Button.playPause);
 
+    group('Left reaches Save, Like, Comments, and CC in order');
+    for (const [index, selector] of [
+        [Button.save, '#SaveButton'], [Button.like, '#LikeButton'],
+        [Button.comments, '#CommentsButton'], [Button.captions, '#CaptionsButton'],
+    ] as const) {
+        await press(Key.Left);
+        await expectField('#buttonRow.focusedIndex', index);
+        await expectField(`${selector}.focused`, true);
+    }
+    await press(Key.Left);
+    await expectField('#buttonRow.focusedIndex', Button.captions);
+    for (let i = 0; i < 4; i++) await press(Key.Right);
+
     group('Down -> back to the trackbar (cursor grows); Up -> back to play/pause');
     await press(Key.Down); // buttons -> bar, or a no-op re-reveal onto the bar (same result either way)
     await expectField('#buttonRow.rowFocused', false);

@@ -1460,5 +1460,105 @@
         <source>Select keyboard language</source>
         <translation>Select keyboard language</translation>
     </message>
+<message>
+    <source>Library</source>
+    <translation>Library</translation>
+</message>
+<message>
+    <source>Watch later</source>
+    <translation>Watch later</translation>
+</message>
+<message>
+    <source>Liked videos</source>
+    <translation>Liked videos</translation>
+</message>
+<message>
+    <source>Watch history on this Roku</source>
+    <translation>Watch history on this Roku</translation>
+</message>
+<message>
+    <source>Account watch history</source>
+    <translation>Account watch history</translation>
+</message>
+<message>
+    <source>Account playlists</source>
+    <translation>Account playlists</translation>
+</message>
+<message>
+    <source>Use Like or Save while watching a video to start your Library.</source>
+    <translation>Use Like or Save while watching a video to start your Library.</translation>
+</message>
+<message>
+    <source>Save to Library</source>
+    <translation>Save to Library</translation>
+</message>
+<message>
+    <source>Add to %1</source>
+    <translation>Add to %1</translation>
+</message>
+<message>
+    <source>Remove from %1</source>
+    <translation>Remove from %1</translation>
+</message>
+<message>
+    <source>New playlist</source>
+    <translation>New playlist</translation>
+</message>
+<message>
+    <source>Enter a playlist name.</source>
+    <translation>Enter a playlist name.</translation>
+</message>
+<message>
+    <source>Could not update your Library. Check available storage and try again.</source>
+    <translation>Could not update your Library. Check available storage and try again.</translation>
+</message>
+<message>
+    <source>Changes are saved to this BlueTube profile on this Roku.</source>
+    <translation>Changes are saved to this BlueTube profile on this Roku.</translation>
+</message>
+<message>
+    <source>Like</source>
+    <translation>Like</translation>
+</message>
+<message>
+    <source>Unlike</source>
+    <translation>Unlike</translation>
+</message>
+<message>
+    <source>Comments</source>
+    <translation>Comments</translation>
+</message>
+<message>
+    <source>Loading comments...</source>
+    <translation>Loading comments...</translation>
+</message>
+<message>
+    <source>No comments are available for this video.</source>
+    <translation>No comments are available for this video.</translation>
+</message>
+<message>
+    <source>Could not load comments. Try again later.</source>
+    <translation>Could not load comments. Try again later.</translation>
+</message>
+<message>
+    <source>Previous</source>
+    <translation>Previous</translation>
+</message>
+<message>
+    <source>Next</source>
+    <translation>Next</translation>
+</message>
+<message>
+    <source>Turn captions on</source>
+    <translation>Turn captions on</translation>
+</message>
+<message>
+    <source>Turn captions off</source>
+    <translation>Turn captions off</translation>
+</message>
+<message>
+    <source>No captions are available for this video.</source>
+    <translation>No captions are available for this video.</translation>
+</message>
 </context>
 </TS>

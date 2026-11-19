@@ -1,0 +1,29 @@
+import "pkg:/components/Services/LibraryService/LibraryStore.bs"
+
+namespace Tests
+
+    @suite
+    class LibraryStoreTests extends Rooibos.BaseTestSuite
+
+        @describe("Updating a collection")
+
+        @it("likes can be removed without changing other saved videos")
+        function _()
+            videos = [{ videoId: "other" }]
+            video = { videoId: "new" }
+            LibraryStore.UpdateItems(videos, video, true)
+            m.assertEqual(LibraryStore.IndexOf(videos, "new"), 0)
+            LibraryStore.UpdateItems(videos, video, true)
+            m.assertEqual(videos, [{ videoId: "other" }])
+        end function
+
+        @it("rewatching moves a video to the top without adding a duplicate")
+        function _()
+            history = [{ videoId: "recent" }, { videoId: "older", title: "Old title" }]
+            LibraryStore.UpdateItems(history, { videoId: "older", title: "New title" }, false)
+            m.assertEqual(history, [{ videoId: "older", title: "New title" }, { videoId: "recent" }])
+        end function
+
+    end class
+
+end namespace

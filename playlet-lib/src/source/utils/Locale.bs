@@ -5,6 +5,7 @@ namespace Locale
         Profile = "Profile"
         Search = "Search"
         Home = "Home"
+        Library = "Library"
         Bookmarks = "Bookmarks"
         Settings = "Settings"
         Remote = "Remote"
@@ -227,6 +228,34 @@ namespace Locale
 
         Live = "LIVE"
         Upcoming = "UPCOMING"
+    end enum
+
+    @locale
+    enum Library
+        WatchLater = "Watch later"
+        LikedVideos = "Liked videos"
+        LocalHistory = "Watch history on this Roku"
+        AccountHistory = "Account watch history"
+        AccountPlaylists = "Account playlists"
+        Empty = "Use Like or Save while watching a video to start your Library."
+        Save = "Save to Library"
+        SaveTo = "Add to %1"
+        RemoveFrom = "Remove from %1"
+        NewPlaylist = "New playlist"
+        BlankPlaylist = "Enter a playlist name."
+        ChangeFailed = "Could not update your Library. Check available storage and try again."
+        LocalOnly = "Changes are saved to this BlueTube profile on this Roku."
+        Like = "Like"
+        Unlike = "Unlike"
+        Comments = "Comments"
+        LoadingComments = "Loading comments..."
+        EmptyComments = "No comments are available for this video."
+        CommentsFailed = "Could not load comments. Try again later."
+        PreviousComment = "Previous"
+        NextComment = "Next"
+        CaptionsOn = "Turn captions on"
+        CaptionsOff = "Turn captions off"
+        NoCaptions = "No captions are available for this video."
     end enum
 
     @locale

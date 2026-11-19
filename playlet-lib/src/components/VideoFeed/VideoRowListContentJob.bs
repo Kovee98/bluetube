@@ -1,3 +1,4 @@
+import "pkg:/components/Services/Invidious/InvidiousToContentNode.bs"
 import "pkg:/components/VideoFeed/FeedLoadState.bs"
 import "pkg:/source/utils/StringUtils.bs"
 
@@ -13,6 +14,14 @@ function ExecuteJob() as void
     for each feed in feeds
         feedContentNode = CreateObject("roSGNode", "FeedContentNode")
         feedContentNode.title = feed.title
+        if feed.localVideos <> invalid
+            feedContentNode.loadState = FeedLoadState.Loaded
+            for each video in feed.localVideos
+                feedContentNode.appendChild(InvidiousContent.ToVideoContentNode(invalid, video, invalid))
+            end for
+            contentNode.appendChild(feedContentNode)
+            continue for
+        end if
         feedContentNode.feedSourcesIndex = 0
         feedContentNode.loadState = FeedLoadState.None
         feedSources = feed.feedSources

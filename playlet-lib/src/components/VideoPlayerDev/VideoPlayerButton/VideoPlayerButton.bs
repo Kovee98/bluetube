@@ -8,6 +8,8 @@ function Init()
     m.background = m.top.findNode("background")
     m.icon = m.top.findNode("icon")
     m.icon2 = m.top.findNode("icon2")
+    m.glyphLabel = m.top.findNode("glyphLabel")
+    m.glyphLabel.font = "font:SmallestSystemFont"
     m.anchor = m.top.findNode("anchor")
     m.nudgeAnim = m.top.findNode("nudgeAnim")
     ' scale about the button center so the pulse grows evenly.
@@ -16,6 +18,7 @@ function Init()
     m.top.ObserveField("focused", FuncName(OnFocused))
     m.top.ObserveField("toggleState", FuncName(Repaint))
     m.top.ObserveField("nudge", FuncName(OnNudge))
+    m.top.ObserveField("iconColor", FuncName(Repaint))
     Repaint()
 end function
 
@@ -47,6 +50,7 @@ function Repaint() as void
     end if
     m.icon.blendColor = iconColor
     m.icon2.blendColor = iconColor
+    m.glyphLabel.color = iconColor
 
     m.icon.visible = m.top.toggleState
     m.icon2.visible = not m.top.toggleState

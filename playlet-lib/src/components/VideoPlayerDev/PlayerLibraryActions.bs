@@ -1,0 +1,307 @@
+import "pkg:/components/Dialog/DialogUtils.bs"
+import "pkg:/components/JobSystem/Jobs.bs"
+import "pkg:/components/JobSystem/JobSystem.bs"
+import "pkg:/components/Services/LibraryService/LibraryStore.bs"
+
+function RememberLibraryVideo() as void
+    if m.top.libraryService = invalid
+        return
+    end if
+    video = LibraryStore.Video(m.top.content)
+    if video = invalid
+        return
+    end if
+    key = m.libraryProfileKey
+    data = LibraryStore.Read(key)
+    if data = invalid
+        return
+    end if
+    LibraryStore.UpdateItems(data.history, video, false)
+    if data.history.Count() > LibraryStore.HISTORY_LIMIT
+        data.history.Pop()
+    end if
+    if LibraryStore.Write(key, data)
+        m.top.libraryService.changed = true
+    end if
+end function
+
+function UpdateLibraryLike() as void
+    if m.top.libraryService = invalid
+        return
+    end if
+    video = LibraryStore.Video(m.top.content)
+    if video = invalid
+        return
+    end if
+    data = LibraryStore.Read(m.libraryProfileKey)
+    if data = invalid
+        ShowLibraryWriteError()
+        return
+    end if
+    LibraryStore.UpdateItems(data.liked, video, true)
+    if WriteLibraryAction(data)
+        m.buttonRow.liked = LibraryStore.IndexOf(data.liked, video.videoId) >= 0
+    end if
+end function
+
+function WriteLibraryAction(data as object) as boolean
+    if not LibraryStore.Write(m.libraryProfileKey, data)
+        ShowLibraryWriteError()
+        return false
+    end if
+    m.top.libraryService.changed = true
+    return true
+end function
+
+function ShowLibraryWriteError() as void
+    DialogUtils.ShowDialogEx({ title: Tr(Locale.NavBar.Library), message: Tr(Locale.Library.ChangeFailed) })
+end function
+
+function OpenLibrarySave() as void
+    if m.top.libraryService = invalid
+        return
+    end if
+    video = LibraryStore.Video(m.top.content)
+    if video = invalid
+        return
+    end if
+    data = LibraryStore.Read(m.libraryProfileKey)
+    if data = invalid
+        ShowLibraryWriteError()
+        return
+    end if
+    buttons = [SaveOption(Tr(Locale.Library.WatchLater), data.later, video.videoId)]
+    m.saveNames = [""]
+    for each playlist in data.playlists
+        buttons.Push(SaveOption(playlist.title, playlist.videos, video.videoId))
+        m.saveNames.Push(playlist.title)
+    end for
+    m.saveNewIndex = -1
+    if data.playlists.Count() < LibraryStore.PLAYLIST_LIMIT
+        m.saveNewIndex = buttons.Count()
+        buttons.Push(Tr(Locale.Library.NewPlaylist))
+    end if
+    buttons.Push(Tr(Locale.Buttons.Cancel))
+    scene = m.top.GetScene()
+    if scene.dialog <> invalid
+        return
+    end if
+    dialog = CreateObject("roSGNode", "StandardMessageDialog")
+    dialog.title = Tr(Locale.Library.Save)
+    dialog.message = [Tr(Locale.Library.LocalOnly)]
+    dialog.buttons = buttons
+    TrackPlayerActionDialog(dialog)
+    dialog.ObserveFieldScoped("buttonSelected", FuncName(OnSaveOptionSelected))
+    scene.dialog = dialog
+end function
+
+function SaveOption(title as string, items as object, videoId as string) as string
+    text = Tr(Locale.Library.SaveTo)
+    if LibraryStore.IndexOf(items, videoId) >= 0
+        text = Tr(Locale.Library.RemoveFrom)
+    end if
+    return text.Replace("%1", title)
+end function
+
+function OnSaveOptionSelected(event as object) as void
+    dialog = event.GetRoSGNode()
+    if m.actionDialog = invalid or not m.actionDialog.IsSameNode(dialog)
+        return
+    end if
+    index = event.GetData()
+    ClosePlayerActionDialog()
+    if index = m.saveNewIndex and index >= 0
+        keyboard = CreateObject("roSGNode", "StandardKeyboardDialog")
+        keyboard.title = Tr(Locale.Library.NewPlaylist)
+        keyboard.buttons = [Tr(Locale.Buttons.OK), Tr(Locale.Buttons.Cancel)]
+        keyboard.ObserveFieldScoped("buttonSelected", FuncName(OnNewPlaylistSelected))
+        TrackPlayerActionDialog(keyboard)
+        m.top.GetScene().dialog = keyboard
+    else if index >= 0 and index < m.saveNames.Count()
+        SaveLibraryVideo(m.saveNames[index], false)
+    end if
+end function
+
+function OnNewPlaylistSelected(event as object) as void
+    keyboard = event.GetRoSGNode()
+    if m.actionDialog = invalid or not m.actionDialog.IsSameNode(keyboard)
+        return
+    end if
+    name = Left(keyboard.text.Trim(), 48)
+    ClosePlayerActionDialog()
+    if event.GetData() = 0
+        if name = ""
+            DialogUtils.ShowDialogEx({ title: Tr(Locale.Library.NewPlaylist), message: Tr(Locale.Library.BlankPlaylist) })
+        else
+            SaveLibraryVideo(name, true)
+        end if
+    end if
+end function
+
+function SaveLibraryVideo(name as string, createPlaylist as boolean) as void
+    video = LibraryStore.Video(m.top.content)
+    if video = invalid
+        return
+    end if
+    data = LibraryStore.Read(m.libraryProfileKey)
+    if data = invalid
+        ShowLibraryWriteError()
+        return
+    end if
+    items = data.later
+    if name <> ""
+        playlist = LibraryStore.FindPlaylist(data, name)
+        if playlist = invalid
+            if not createPlaylist or data.playlists.Count() >= LibraryStore.PLAYLIST_LIMIT
+                ShowLibraryWriteError()
+                return
+            end if
+            playlist = { title: name, videos: [] }
+            data.playlists.Push(playlist)
+        end if
+        items = playlist.videos
+    end if
+    LibraryStore.UpdateItems(items, video, not createPlaylist)
+    if name <> "" and items.Count() = 0
+        for i = 0 to data.playlists.Count() - 1
+            if LCase(data.playlists[i].title) = LCase(name)
+                data.playlists.Delete(i)
+                exit for
+            end if
+        end for
+    end if
+    WriteLibraryAction(data)
+end function
+
+function OpenPlayerComments() as void
+    if m.top.content = invalid or ValidString(m.top.content.videoId) = "" or m.invidious = invalid
+        return
+    end if
+    scene = m.top.GetScene()
+    if scene.dialog <> invalid
+        return
+    end if
+    dialog = CreateObject("roSGNode", "StandardMessageDialog")
+    TrackPlayerActionDialog(dialog)
+    dialog.ObserveFieldScoped("buttonSelected", FuncName(OnCommentButtonSelected))
+    scene.dialog = dialog
+    m.comments = []
+    m.commentIndex = 0
+    FetchPlayerComments("")
+end function
+
+function FetchPlayerComments(continuation as string) as void
+    m.commentContinuation = ""
+    m.actionDialog.title = Tr(Locale.Library.Comments)
+    m.actionDialog.message = [Tr(Locale.Library.LoadingComments)]
+    m.actionDialog.buttons = [Tr(Locale.Buttons.Cancel)]
+    m.commentsJob = JobSystem.CreateCallback(OnPlayerCommentsLoaded)
+    JobSystem.QueueJob(m.jobQueue, Jobs.VideoCommentsJob, {
+        videoId: m.top.content.videoId
+        continuation: continuation
+        invidious: m.invidious
+    }, m.commentsJob)
+end function
+
+function OnPlayerCommentsLoaded(event as object) as void
+    callback = event.GetRoSGNode()
+    if m.commentsJob = invalid or not m.commentsJob.IsSameNode(callback)
+        return
+    end if
+    JobSystem.UnobserveCallback(callback)
+    m.commentsJob = invalid
+    sceneDialog = m.top.GetScene().dialog
+    if m.actionDialog = invalid or sceneDialog = invalid or not sceneDialog.IsSameNode(m.actionDialog)
+        return
+    end if
+    info = event.GetInfo()
+    if info.success and IsAssociativeArray(info.data)
+        if info.data.comments.Count() > 0
+            m.commentIndex = m.comments.Count()
+            m.comments.Append(info.data.comments)
+            m.commentContinuation = info.data.continuation
+            PaintPlayerComment()
+        else if m.comments.Count() > 0
+            PaintPlayerComment()
+        else
+            m.actionDialog.message = [Tr(Locale.Library.EmptyComments)]
+        end if
+    else
+        m.actionDialog.message = [Tr(Locale.Library.CommentsFailed)]
+    end if
+end function
+
+function PaintPlayerComment() as void
+    comment = m.comments[m.commentIndex]
+    m.actionDialog.title = `${Tr(Locale.Library.Comments)} (${m.commentIndex + 1})`
+    m.actionDialog.message = [comment.author, comment.text]
+    m.commentButtons = ["close"]
+    buttons = [Tr(Locale.Buttons.OK)]
+    if m.commentIndex > 0
+        m.commentButtons.Push("previous")
+        buttons.Push(Tr(Locale.Library.PreviousComment))
+    end if
+    if m.commentIndex + 1 < m.comments.Count() or m.commentContinuation <> ""
+        m.commentButtons.Push("next")
+        buttons.Push(Tr(Locale.Library.NextComment))
+    end if
+    m.actionDialog.buttons = buttons
+end function
+
+function OnCommentButtonSelected(event as object) as void
+    if m.actionDialog = invalid or not m.actionDialog.IsSameNode(event.GetRoSGNode())
+        return
+    end if
+    index = event.GetData()
+    if index = 0
+        ClosePlayerActionDialog()
+    else if m.commentsJob = invalid and m.commentButtons <> invalid and index > 0 and index < m.commentButtons.Count()
+        if m.commentButtons[index] = "previous"
+            m.commentIndex -= 1
+            PaintPlayerComment()
+        else if m.commentIndex + 1 < m.comments.Count()
+            m.commentIndex += 1
+            PaintPlayerComment()
+        else if m.commentContinuation <> ""
+            FetchPlayerComments(m.commentContinuation)
+        end if
+    end if
+end function
+
+function TrackPlayerActionDialog(dialog as object) as void
+    m.actionDialog = dialog
+    dialog.ObserveFieldScoped("wasClosed", FuncName(OnPlayerActionDialogClosed))
+    m.autoHide.control = "stop"
+end function
+
+function OnPlayerActionDialogClosed(event as object) as void
+    if m.actionDialog <> invalid and m.actionDialog.IsSameNode(event.GetRoSGNode())
+        ReleasePlayerActionDialog()
+    end if
+end function
+
+function ReleasePlayerActionDialog() as void
+    if m.actionDialog <> invalid
+        m.actionDialog.UnobserveFieldScoped("wasClosed")
+        m.actionDialog.UnobserveFieldScoped("buttonSelected")
+        m.actionDialog = invalid
+    end if
+    if m.commentsJob <> invalid
+        JobSystem.UnobserveCallback(m.commentsJob)
+        m.commentsJob.cancel = true
+        m.commentsJob = invalid
+    end if
+    m.comments = invalid
+    m.commentButtons = invalid
+    if not m.onCloseCalled and m.container.fullscreen
+        ArmAutoHide()
+    end if
+end function
+
+function ClosePlayerActionDialog() as void
+    if m.actionDialog <> invalid
+        dialog = m.actionDialog
+        ReleasePlayerActionDialog()
+        dialog.close = true
+    end if
+end function

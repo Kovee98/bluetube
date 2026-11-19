@@ -8,6 +8,11 @@ Playlet does not show advertising, whether personalized or non personalized.
 
 Playlet may integrate with 3rd party telemetry services in order to capture anonymous diagnostics data. The only purpose of this data is to diagnose issues and improve the app.
 
+BlueTube's Library stores likes, Watch later, custom playlists, and recent watch
+history on the Roku, separately for each BlueTube profile and for guests. This
+local Library is not synced to YouTube or Invidious. Opening comments sends the
+video ID to the configured video backend.
+
 ### Current telemetry implementation
 
 > This section tries to explain in more detail what data is collected and how it is used. Due to the granularity and details of the following explanation, it might be slightly out of date, but mostly represents the reality of the "Playlet may integrate with 3rd party telemetry services"

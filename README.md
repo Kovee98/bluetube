@@ -93,6 +93,16 @@ and [distribution notes](./docs/README.md#bluetube-branding-and-roku-distributio
 
 ## Features
 
+On Roku, press **Up** to reveal the playback controls and **Up** again to focus
+the button row. **CC** is at the far left and picture-in-picture is at the far
+right. The row also has controls for reading comments, liking or unliking a
+video, and saving it to **Watch later** or a custom playlist.
+
+Open **Library** in the sidebar to browse those collections and your recent
+watch history. Likes and saves are local to the active BlueTube profile on this
+Roku; they do not change your YouTube or Invidious account. Signed-in profiles
+can also browse their account playlists and watch history in Library.
+
 - 🔥 No Ads (Not now, not ever)
 - 🕵️ No Tracking
 - 🛡️ Privacy driven (supports [Invidious](https://invidious.io/) backend)
