@@ -65,15 +65,16 @@ namespace LibraryStore
         return -1
     end function
 
-    function UpdateItems(items as object, video as object, toggle as boolean) as void
-        index = IndexOf(items, video.videoId)
+    ' Keep the parameter name distinct from LibraryStore.Video for BrighterScript namespace resolution.
+    function UpdateItems(items as object, entry as object, toggle as boolean) as void
+        index = IndexOf(items, entry.videoId)
         if index >= 0
             items.Delete(index)
             if toggle
                 return
             end if
         end if
-        items.Unshift(video)
+        items.Unshift(entry)
     end function
 
     function FindPlaylist(data as object, name as string) as object

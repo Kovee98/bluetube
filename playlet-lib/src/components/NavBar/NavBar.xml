@@ -30,7 +30,7 @@
                 id="LogoFav"
                 width="46"
                 height="46"
-                translation="[8, 44]"
+                translation="[14, 44]"
                 uri="pkg:/images/logo-fav.png" />
             <Poster
                 id="Logo"

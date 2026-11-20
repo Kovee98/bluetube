@@ -792,11 +792,11 @@ function OnVideoState(event as object) as void
         ' first frame -> the module's ready gate opens; drop the loading overlay.
         if not m.firstFrameSeen
             m.firstFrameSeen = true
-            RememberLibraryVideo()
-            SyncCaptions()
             m.transport.OnReady()
             m.spinner.mode = SpinMode.Off
             LogInfo("first frame: ready=true, loading overlay off")
+            RememberLibraryVideo()
+            SyncCaptions()
         end if
         ' reaching "playing" means any in-flight play-through seek has landed. Clear the settling flag before
         ' the freeze so a transport that deferred its pause now freezes this settled-playing video.

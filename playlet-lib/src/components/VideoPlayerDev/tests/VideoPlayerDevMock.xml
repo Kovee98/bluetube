@@ -59,6 +59,7 @@
         <function name="TestSetup" />
         <function name="TestKey" />
         <function name="TestSetState" />
+        <function name="TestBindLibrary" />
         <function name="TestSnapshot" />
         <function name="TestWireQueueClose" />
         <function name="TestResendSummary" />

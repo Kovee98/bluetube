@@ -35,7 +35,7 @@
                             <NavBarItemContent
                                 screen="LibraryScreen"
                                 text="Library"
-                                icon="pkg:/images/icons/subscriptions.png" />
+                                icon="pkg:/images/icons/library.png" />
                             <NavBarItemContent
                                 screen="BookmarksScreen"
                                 text="Bookmarks"

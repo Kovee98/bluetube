@@ -56,6 +56,8 @@ function TestSetup() as void
     m.top.appController = createObject("roSGNode", "Node")
     m.top.webServer = createObject("roSGNode", "Node")
     m.top.innertube = createObject("roSGNode", "Node")
+    m.top.libraryService = invalid
+    m.top.content = invalid
 
     ' AutoBind aliases bound interface fields onto m.<name>; do it manually here (coordinator + Lounge read m.*).
     m.container = m.top.container
@@ -116,6 +118,14 @@ end function
 ' TestSetState — set the faked device state; alwaysNotify fires the REAL OnVideoState observer.
 function TestSetState(newState as string) as void
     m.top.state = newState
+end function
+
+function TestBindLibrary(key as string, videoId as string) as void
+    m.libraryProfileKey = key
+    m.top.libraryService = CreateObject("roSGNode", "LibraryService")
+    content = CreateObject("roSGNode", "ContentNode")
+    content.addFields({ videoId: videoId })
+    m.top.content = content
 end function
 
 ' TestSetControl — set the faked device control externally (simulates a Lounge/phone command) -> fires the

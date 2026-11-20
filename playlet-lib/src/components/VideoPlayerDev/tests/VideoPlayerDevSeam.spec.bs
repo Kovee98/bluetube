@@ -5,9 +5,12 @@
 import "pkg:/components/VideoPlayerDev/PlayerCoordinatorLogic.bs"
 import "pkg:/components/VideoPlayerDev/TransportController.bs"
 import "pkg:/components/VideoPlayerDev/VideoNode.bs"
+import "pkg:/components/Services/LibraryService/LibraryStore.bs"
 import "pkg:/source/tests/VideoPlayerDev/PlayerInvariants.bs"
 import "pkg:/source/utils/ArrayUtils.bs"
+import "pkg:/source/utils/RegistryUtils.bs"
 import "pkg:/source/utils/RemoteKeys.bs"
+import "pkg:/source/utils/StringUtils.bs"
 
 namespace Tests
 
@@ -32,6 +35,23 @@ namespace Tests
             snap = m.Snap()
             m.assertEqual(snap.transportMode, TransportController.Mode.Idle)
             m.assertFalse(snap.seekSettling)
+        end function
+
+        @it("first playback with Library enabled records history, clears loading, and lets Back close the player")
+        function _()
+            m.top.callFunc("TestSetup")
+            key = "test_" + StringUtils.RandomId()
+            m.top.callFunc("TestBindLibrary", key, "test-video")
+            m.top.callFunc("TestSetState", VideoState.Buffering)
+            m.assertEqual(m.Snap().spinnerMode, SpinMode.Loading)
+
+            m.top.callFunc("TestSetState", VideoState.Playing)
+            data = LibraryStore.Read(key)
+            RegistryUtils.Delete(key, LibraryStore.REGISTRY_SECTION)
+            m.assertEqual(LibraryStore.IndexOf(data.history, "test-video"), 0)
+            m.assertEqual(m.Snap().spinnerMode, SpinMode.Off)
+            m.assertTrue(m.top.callFunc("TestKey", RemoteKeys.Back, true))
+            m.assertTrue(m.top.videoQueue.closePlayer)
         end function
 
         ' P-SEAM: the coordinator must NOT pause the device while a play-through seek it issued is still settling.
