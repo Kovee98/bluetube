@@ -1485,36 +1485,12 @@
     <translation>Account playlists</translation>
 </message>
 <message>
-    <source>Use Like or Save while watching a video to start your Library.</source>
-    <translation>Use Like or Save while watching a video to start your Library.</translation>
-</message>
-<message>
-    <source>Save to Library</source>
-    <translation>Save to Library</translation>
-</message>
-<message>
-    <source>Add to %1</source>
-    <translation>Add to %1</translation>
-</message>
-<message>
-    <source>Remove from %1</source>
-    <translation>Remove from %1</translation>
-</message>
-<message>
-    <source>New playlist</source>
-    <translation>New playlist</translation>
-</message>
-<message>
-    <source>Enter a playlist name.</source>
-    <translation>Enter a playlist name.</translation>
+    <source>Use Like while watching a video to start your Library.</source>
+    <translation>Use Like while watching a video to start your Library.</translation>
 </message>
 <message>
     <source>Could not update your Library. Check available storage and try again.</source>
     <translation>Could not update your Library. Check available storage and try again.</translation>
-</message>
-<message>
-    <source>Changes are saved to this BlueTube profile on this Roku.</source>
-    <translation>Changes are saved to this BlueTube profile on this Roku.</translation>
 </message>
 <message>
     <source>Like</source>

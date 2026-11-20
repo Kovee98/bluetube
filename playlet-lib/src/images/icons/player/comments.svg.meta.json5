@@ -1,0 +1,11 @@
+{
+  inputHash: 'e70ce3f7ff9b86d640128b9198ff2154',
+  outputs: [
+    {
+      outputFilePath: 'images/icons/player/comments.png',
+      outputHash: '03544ddf4de523ce981f79eaa6225f85',
+      width: 63,
+      height: 63,
+    },
+  ],
+}

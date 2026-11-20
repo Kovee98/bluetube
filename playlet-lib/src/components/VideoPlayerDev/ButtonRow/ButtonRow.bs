@@ -3,29 +3,24 @@ import "pkg:/components/VideoPlayerDev/TransportController.bs"
 import "pkg:/source/utils/Locale.bs"
 import "pkg:/source/utils/Types.bs"
 
-' Trackbar track spans x=68..1212: right cluster right-aligns to 1212, center cluster centers on 640.
-const ROW_Y = 560
-const BUTTON_WIDTH = 42
-const BUTTON_SPACING = 20
+' The row sits above the trackbar (y=632) and is centered on screen; BUTTON_WIDTH matches VideoPlayerButton.
+const ROW_Y = 556
+const BUTTON_WIDTH = 54
+const BUTTON_SPACING = 28
 const SCREEN_CENTER_X = 640
-const TRACKBAR_LEFT_X = 68
-const TRACKBAR_RIGHT_X = 1212
 
 function Init()
     ' Focus order matches PlayerCoordinatorLogic.PlayerButton.
     m.buttons = [
         m.top.findNode("CaptionsButton")
         m.top.findNode("CommentsButton")
-        m.top.findNode("LikeButton")
-        m.top.findNode("SaveButton")
         m.top.findNode("PlayPauseButton")
+        m.top.findNode("LikeButton")
         m.top.findNode("MinimizeButton")
     ]
-    m.leftCluster = m.top.findNode("LeftCluster")
-    m.centerCluster = m.top.findNode("CenterCluster")
-    m.rightCluster = m.top.findNode("RightCluster")
+    m.buttonGroup = m.top.findNode("Buttons")
     m.actionHint = m.top.findNode("actionHint")
-    LayoutClusters()
+    LayoutButtons()
     m.top.buttonCount = m.buttons.Count() ' coordinator reads this to clamp focus
 
     for each field in ["transportMode", "rowFocused", "focusedIndex", "playing", "captionsAvailable", "captionsOn", "liked"]
@@ -43,29 +38,18 @@ function OnNudge() as void
     end if
 end function
 
-' Position the buttons inside each cluster and the clusters on screen, all from child count, so adding a
-' button auto-positions without hardcoded offsets.
-function LayoutClusters() as void
-    LayoutButtons(m.leftCluster)
-    LayoutButtons(m.centerCluster)
-    LayoutButtons(m.rightCluster)
-    m.leftCluster.translation = [TRACKBAR_LEFT_X, ROW_Y]
-    m.centerCluster.translation = [SCREEN_CENTER_X - ClusterWidth(m.centerCluster) / 2, ROW_Y]
-    m.rightCluster.translation = [TRACKBAR_RIGHT_X - ClusterWidth(m.rightCluster), ROW_Y]
-end function
-
-function LayoutButtons(cluster as object) as void
-    for i = 0 to cluster.getChildCount() - 1
-        cluster.getChild(i).translation = [i * (BUTTON_WIDTH + BUTTON_SPACING), 0]
+' Position the buttons in a row and center the row on screen, from child count, so adding a button
+' auto-positions without hardcoded offsets.
+function LayoutButtons() as void
+    n = m.buttonGroup.getChildCount()
+    for i = 0 to n - 1
+        m.buttonGroup.getChild(i).translation = [i * (BUTTON_WIDTH + BUTTON_SPACING), 0]
     end for
-end function
-
-function ClusterWidth(cluster as object) as integer
-    n = cluster.getChildCount()
-    if n <= 0
-        return 0
+    rowWidth = 0
+    if n > 0
+        rowWidth = n * BUTTON_WIDTH + (n - 1) * BUTTON_SPACING
     end if
-    return n * BUTTON_WIDTH + (n - 1) * BUTTON_SPACING
+    m.buttonGroup.translation = [SCREEN_CENTER_X - rowWidth / 2, ROW_Y]
 end function
 
 function Repaint() as void
@@ -103,10 +87,10 @@ function Repaint() as void
         if m.top.liked
             hint = Tr(Locale.Library.Unlike)
         end if
-    else if index = PlayerCoordinatorLogic.PlayerButton.Save
-        hint = Tr(Locale.Library.Save)
     end if
-    m.actionHint.translation = [TRACKBAR_LEFT_X + index * (BUTTON_WIDTH + BUTTON_SPACING), ROW_Y - 30]
+    ' center the hint over the focused button
+    buttonCenterX = m.buttonGroup.translation[0] + index * (BUTTON_WIDTH + BUTTON_SPACING) + BUTTON_WIDTH / 2
+    m.actionHint.translation = [buttonCenterX - m.actionHint.width / 2, ROW_Y - 32]
     m.actionHint.text = hint
     m.actionHint.visible = m.top.rowFocused and hint <> ""
 end function

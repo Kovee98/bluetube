@@ -575,8 +575,6 @@ function ActivateButton(index as integer) as void
         OpenPlayerComments()
     else if index = PlayerCoordinatorLogic.PlayerButton.Like
         UpdateLibraryLike()
-    else if index = PlayerCoordinatorLogic.PlayerButton.Save
-        OpenLibrarySave()
     else if index = PlayerCoordinatorLogic.PlayerButton.Minimize
         MinimizeReset()
         VideoQueueUtils.ToggleVideoPictureInPicture(m.videoQueue)

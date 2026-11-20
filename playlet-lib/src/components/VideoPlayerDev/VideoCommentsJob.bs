@@ -1,91 +1,150 @@
 import "pkg:/components/Services/Innertube/NextEndpoint.bs"
 import "pkg:/components/Services/Invidious/InvidiousService.bs"
+import "pkg:/source/utils/Logging.bs"
 import "pkg:/source/utils/ObjectUtils.bs"
 
 @job("VideoCommentsJob")
 function ExecuteJob() as void
     input = JobGetInput()
-    service = new Invidious.InvidiousService(input.invidious)
-    instance = service.GetInstance()
     token = ValidString(input.continuation)
     cancellation = JobGetCancellation()
-    if instance = Invidious.PLAYLET_BUILT_IN_INSTANCE
-        if token = ""
-            response = Innertube.CreateNextRequest({ videoId: input.videoId }).Cancellation(cancellation).Await()
-            if not response.IsSuccess()
-                JobError(response.ErrorMessage())
-                return
-            end if
-            token = FindCommentEntry(response.Json())
-            if token = ""
-                JobSuccessData({ comments: [], continuation: "" })
-                return
-            end if
-        end if
-        response = Innertube.CreateNextRequest({ continuation: token }).Cancellation(cancellation).Await()
-        if not response.IsSuccess()
-            JobError(response.ErrorMessage())
+    service = new Invidious.InvidiousService(input.invidious)
+    instance = service.GetInstance()
+    if instance <> Invidious.PLAYLET_BUILT_IN_INSTANCE
+        result = FetchInvidiousComments(instance, input.videoId, token, cancellation)
+        ' An Invidious continuation can't be used with Innertube, so only the first page falls back.
+        if result.error = invalid and (result.comments.Count() > 0 or token <> "")
+            JobSuccessData(result)
             return
         end if
-        JobSuccessData(ParseYouTubeComments(response.Json()))
-    else
-        request = HttpClient.Get(`${instance}/api/v1/comments/${input.videoId}`).Cancellation(cancellation)
         if token <> ""
-            request.QueryParam("continuation", token)
-        end if
-        response = request.Await()
-        if not response.IsSuccess()
-            JobError(response.ErrorMessage())
+            JobError(result.error)
             return
         end if
-        payload = response.Json()
-        if not IsAssociativeArray(payload) or not IsArray(payload.comments)
-            JobError("Invalid comments response")
+        LogWarn("Invidious comments unavailable, falling back to Innertube:", result.error)
+        if JobIsCancelled()
             return
         end if
-        comments = []
-        for each comment in payload.comments
-            AddComment(comments, comment.author, comment.content)
-        end for
-        JobSuccessData({ comments: comments, continuation: ValidString(payload.continuation) })
     end if
+
+    result = FetchInnertubeComments(input.videoId, token, ValidString(input.visitorData), cancellation)
+    if result.error <> invalid
+        JobError(result.error)
+        return
+    end if
+    JobSuccessData(result)
 end function
 
-function FindCommentEntry(value as dynamic) as string
+function FetchInvidiousComments(instance as string, videoId as string, token as string, cancellation as dynamic) as object
+    request = HttpClient.Get(`${instance}/api/v1/comments/${videoId}`).Cancellation(cancellation)
+    if token <> ""
+        request.QueryParam("continuation", token)
+    end if
+    response = request.Await()
+    if not response.IsSuccess()
+        return { error: response.ErrorMessage() }
+    end if
+    payload = response.Json()
+    if not IsAssociativeArray(payload) or not IsArray(payload.comments)
+        return { error: "Invalid comments response" }
+    end if
+    comments = []
+    for each comment in payload.comments
+        AddComment(comments, comment.author, comment.content)
+    end for
+    return { comments: comments, continuation: ValidString(payload.continuation) }
+end function
+
+function FetchInnertubeComments(videoId as string, token as string, visitorData as string, cancellation as dynamic) as object
+    tokens = [token]
+    if token = ""
+        response = Innertube.CreateNextRequest({ videoId: videoId }, NextOptions(visitorData)).Cancellation(cancellation).Await()
+        if not response.IsSuccess()
+            return { error: response.ErrorMessage() }
+        end if
+        payload = response.Json()
+        if not IsAssociativeArray(payload)
+            return { error: "Invalid next response" }
+        end if
+        if visitorData = ""
+            visitorData = ValidString(ObjectUtils.Dig(payload, ["responseContext", "visitorData"]))
+        end if
+        tokens = []
+        FindCommentEntries(payload, tokens)
+        LogInfo("Comment continuation candidates for", videoId, ":", tokens.Count())
+    end if
+
+    ' Comments disabled (or no section in the response) is an empty result, not an error.
+    result = { comments: [], continuation: "" }
+    lastError = invalid
+    for each candidate in tokens
+        if JobIsCancelled()
+            return result
+        end if
+        response = Innertube.CreateNextRequest({ continuation: candidate }, NextOptions(visitorData)).Cancellation(cancellation).Await()
+        if not response.IsSuccess()
+            lastError = response.ErrorMessage()
+            continue for
+        end if
+        payload = response.Json()
+        if not IsAssociativeArray(payload)
+            lastError = "Invalid comments response"
+            continue for
+        end if
+        result = ParseYouTubeComments(payload)
+        LogInfo("Parsed", result.comments.Count(), "comments for", videoId)
+        if result.comments.Count() > 0
+            return result
+        end if
+    end for
+    if result.comments.Count() = 0 and lastError <> invalid
+        return { error: lastError }
+    end if
+    return result
+end function
+
+function NextOptions(visitorData as string) as dynamic
+    if visitorData = ""
+        return invalid
+    end if
+    return { visitorData: visitorData }
+end function
+
+' Collects every comments continuation token (the comments item section and the comments engagement panel),
+' in document order and de-duplicated, so a stale or empty one doesn't hide the others.
+function FindCommentEntries(value as dynamic, tokens as object) as void
     if IsAssociativeArray(value)
         section = value.itemSectionRenderer
         if section <> invalid and (section.targetId = "comments-section" or section.sectionIdentifier = "comment-item-section")
             for each item in ValidArray(section.contents)
-                token = CommentContinuation(item)
-                if token <> ""
-                    return token
-                end if
+                AddToken(tokens, CommentContinuation(item))
             end for
         end if
         panel = value.engagementPanelSectionListRenderer
         if panel <> invalid and panel.targetId = "engagement-panel-comments-section"
-            token = ValidString(ObjectUtils.Dig(panel, ["content", "sectionListRenderer", "contents", 0, "continuationItemRenderer", "continuationEndpoint", "continuationCommand", "token"]))
-            if token <> ""
-                return token
-            end if
+            AddToken(tokens, ValidString(ObjectUtils.Dig(panel, ["content", "sectionListRenderer", "contents", 0, "continuationItemRenderer", "continuationEndpoint", "continuationCommand", "token"])))
         end if
         for each key in value
-            token = FindCommentEntry(value[key])
-            if token <> ""
-                return token
-            end if
+            FindCommentEntries(value[key], tokens)
         end for
     else if IsArray(value)
         for each entry in value
-            token = FindCommentEntry(entry)
-            if token <> ""
-                return token
-            end if
+            FindCommentEntries(entry, tokens)
         end for
     end if
-    return ""
 end function
 
+function AddToken(tokens as object, token as string) as void
+    if token = ""
+        return
+    end if
+    for each existing in tokens
+        if existing = token
+            return
+        end if
+    end for
+    tokens.Push(token)
+end function
 function CommentContinuation(item as object) as string
     return ValidString(ObjectUtils.Dig(item, ["continuationItemRenderer", "continuationEndpoint", "continuationCommand", "token"]))
 end function

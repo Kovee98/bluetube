@@ -604,7 +604,8 @@ namespace Tests
 
             m.top.callFunc("TestKey", RemoteKeys.Up, true) ' reveal -> bar tier
             m.top.callFunc("TestKey", RemoteKeys.Up, true) ' bar -> buttons tier
-            m.top.callFunc("TestKey", RemoteKeys.Right, true) ' highlight minimize
+            m.top.callFunc("TestKey", RemoteKeys.Right, true)
+            m.top.callFunc("TestKey", RemoteKeys.Right, true) ' highlight minimize (play/pause -> like -> minimize)
             m.assertEqual(m.Snap().focusedButton, PlayerCoordinatorLogic.PlayerButton.Minimize)
 
             m.top.callFunc("TestKey", RemoteKeys.Ok, true)
@@ -893,6 +894,7 @@ namespace Tests
             m.assertEqual(snap.focusedButton, PlayerCoordinatorLogic.PlayerButton.PlayPause)
             ' highlight minimize, drop to the bar, come back up: still minimize.
             m.top.callFunc("TestKey", RemoteKeys.Right, true)
+            m.top.callFunc("TestKey", RemoteKeys.Right, true)
             m.assertEqual(m.Snap().focusedButton, PlayerCoordinatorLogic.PlayerButton.Minimize)
             m.top.callFunc("TestKey", RemoteKeys.Down, true)
             m.top.callFunc("TestKey", RemoteKeys.Up, true)
@@ -912,9 +914,8 @@ namespace Tests
         function _()
             m.top.callFunc("TestKey", RemoteKeys.Up, true)
             m.top.callFunc("TestKey", RemoteKeys.Up, true)
-            for i = 1 to 4
-                m.top.callFunc("TestKey", RemoteKeys.Left, true)
-            end for
+            m.top.callFunc("TestKey", RemoteKeys.Left, true) ' play/pause -> comments
+            m.top.callFunc("TestKey", RemoteKeys.Left, true) ' comments -> captions
             m.assertEqual(m.Snap().focusedButton, PlayerCoordinatorLogic.PlayerButton.Captions)
             m.top.callFunc("TestKey", RemoteKeys.Ok, true)
             m.assertEqual(m.top.globalCaptionMode, "Off")
@@ -951,10 +952,10 @@ namespace Tests
         function _()
             m.top.callFunc("TestKey", RemoteKeys.Up, true) ' reveal -> bar tier (default)
             m.top.callFunc("TestKey", RemoteKeys.Up, true) ' bar -> buttons tier, play/pause
-            m.top.callFunc("TestKey", RemoteKeys.Right, true) ' play/pause -> minimize
+            m.top.callFunc("TestKey", RemoteKeys.Right, true) ' play/pause -> like
             m.top.callFunc("TestKey", RemoteKeys.Down, true) ' buttons -> bar
             m.top.callFunc("TestKey", RemoteKeys.Up, true) ' bar -> buttons
-            m.top.callFunc("TestKey", RemoteKeys.Left, true) ' minimize -> play/pause
+            m.top.callFunc("TestKey", RemoteKeys.Left, true) ' like -> play/pause
             m.assertEqual(m.Snap().nudgeCount, 0, "every press moved focus; none may pulse")
         end function
 
@@ -962,10 +963,16 @@ namespace Tests
         @it("Left/Right clamped at the row ends nudge the focused button")
         function _()
             m.top.callFunc("TestKey", RemoteKeys.Up, true) ' reveal -> bar tier (default)
-            m.top.callFunc("TestKey", RemoteKeys.Up, true) ' bar -> buttons tier, play/pause (leftmost)
+            m.top.callFunc("TestKey", RemoteKeys.Up, true) ' bar -> buttons tier, play/pause (middle)
+            m.top.callFunc("TestKey", RemoteKeys.Left, true) ' -> comments
+            m.top.callFunc("TestKey", RemoteKeys.Left, true) ' -> captions (leftmost)
+            m.assertEqual(m.Snap().nudgeCount, 0, "moving focus does not nudge")
             m.top.callFunc("TestKey", RemoteKeys.Left, true) ' clamped at the left end
             m.assertEqual(m.Snap().nudgeCount, 1)
-            m.top.callFunc("TestKey", RemoteKeys.Right, true) ' -> minimize (rightmost)
+            m.assertEqual(m.Snap().focusedButton, PlayerCoordinatorLogic.PlayerButton.Captions)
+            for i = 1 to 4
+                m.top.callFunc("TestKey", RemoteKeys.Right, true) ' -> minimize (rightmost)
+            end for
             m.top.callFunc("TestKey", RemoteKeys.Right, true) ' clamped at the right end
             snap = m.Snap()
             m.assertEqual(snap.nudgeCount, 2)
@@ -1024,7 +1031,8 @@ namespace Tests
         function _()
             m.top.callFunc("TestKey", RemoteKeys.Up, true) ' reveal -> bar tier (default)
             m.top.callFunc("TestKey", RemoteKeys.Up, true) ' bar -> buttons tier
-            m.top.callFunc("TestKey", RemoteKeys.Right, true) ' highlight minimize
+            m.top.callFunc("TestKey", RemoteKeys.Right, true)
+            m.top.callFunc("TestKey", RemoteKeys.Right, true) ' highlight minimize (play/pause -> like -> minimize)
             m.assertEqual(m.Snap().focusedButton, PlayerCoordinatorLogic.PlayerButton.Minimize)
             m.top.callFunc("TestKey", RemoteKeys.Play, true) ' must pause, not minimize
             snap = m.Snap()

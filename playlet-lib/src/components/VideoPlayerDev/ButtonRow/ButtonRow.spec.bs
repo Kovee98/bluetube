@@ -28,13 +28,14 @@ namespace Tests
             m.assertFalse(m.top.visible)
         end function
 
-        @it("exposes its button count and auto-positions the clusters (centered + right-aligned)")
+        @it("exposes its button count and centers the row on screen with play/pause in the middle")
         function _()
-            m.assertEqual(m.top.buttonCount, 6)
-            m.assertEqual(m.top.findNode("LeftCluster").translation[0], 68.0)
+            m.assertEqual(m.top.buttonCount, 5)
+            ' 5 x 54 + 4 x 28 = 382 wide -> starts at 640 - 191
+            m.assertEqual(m.top.findNode("Buttons").translation[0], 449.0)
             m.assertEqual(m.top.findNode("CaptionsButton").translation[0], 0.0)
-            m.assertEqual(m.top.findNode("CenterCluster").translation[0], 619.0)
-            m.assertEqual(m.top.findNode("RightCluster").translation[0], 1170.0)
+            ' play/pause center: 449 + 2 x 82 + 27 = 640
+            m.assertEqual(m.top.findNode("PlayPauseButton").translation[0], 164.0)
         end function
 
         @describe("virtual-focus highlight")

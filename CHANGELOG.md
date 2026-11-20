@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Aligned the collapsed sidebar logo with the navigation icons and gave Library its own icon.
 - Fixed a Library history error that could leave video playback stuck on a black screen with the loading spinner and make Back unresponsive.
+- Comments now try every comments section YouTube returns, use the playback session identity, and fall back from an Invidious instance to YouTube when the instance has none.
+
+### Changed
+
+- The video player buttons are now padded icons in a single centered row (captions, comments, play/pause, like, picture-in-picture).
+
+### Removed
+
+- The player's Save to Watch later/playlist button. It only saved to this Roku and never synced to your YouTube account. Previously saved Watch later and playlist items still appear in Library.
 
 ## [0.48.9] - 2026-10-14
 

@@ -49,10 +49,9 @@ namespace PlayerCoordinatorLogic
     enum PlayerButton
         Captions = 0
         Comments = 1
-        Like = 2
-        Save = 3
-        PlayPause = 4
-        Minimize = 5
+        PlayPause = 2
+        Like = 3
+        Minimize = 4
     end enum
 
     ' The two focus targets above/at the trackbar: the bar itself (Left/Right scrub, the cursor grows) and the

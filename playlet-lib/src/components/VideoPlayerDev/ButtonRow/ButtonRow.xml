@@ -3,12 +3,12 @@
          highlighted (focusedIndex) and whether the row has focus (rowFocused). `visible` is gated on idle so the
          row rides the parent Chrome group's opacity fade instead of popping.
 
-         CenterCluster is centered on screen, RightCluster is right-aligned; each is a plain Group whose
-         buttons + position are laid out in code from its child count. (Not a LayoutGroup: it re-aligns a child
-         whenever its bounding rect changes, which pins the scale pulse's corner and makes it grow off-center.)
+         Buttons is one row centered on screen, in focus order, with play/pause in the middle; it is a plain
+         Group laid out in code from its child count. (Not a LayoutGroup: it re-aligns a child whenever its
+         bounding rect changes, which pins the scale pulse's corner and makes it grow off-center.)
 
          To add a button, do all four or focus/activation breaks:
-           1. drop a VideoPlayerButton into a cluster (xml below);
+           1. drop a VideoPlayerButton into Buttons (xml below, in focus order);
            2. add it (in focus order) to m.buttons in ButtonRow.bs (buttonCount updates automatically);
            3. add a PlayerCoordinatorLogic.PlayerButton enum value (the index);
            4. add an `else if index = PlayerButton.x` case to ActivateButton in VideoPlayerDev.bs. -->
@@ -26,23 +26,15 @@
         <field id="nudge" type="boolean" alwaysNotify="true" />
     </interface>
     <children>
-        <Group id="LeftCluster">
-            <VideoPlayerButton id="CaptionsButton" glyph="CC" />
-            <VideoPlayerButton id="CommentsButton" glyph="Chat" />
-            <VideoPlayerButton id="LikeButton" iconUri="pkg:/images/icons/thumb-up.png" />
-            <VideoPlayerButton id="SaveButton" glyph="+" />
-        </Group>
-        <!-- play/pause, centered on screen (x=640). -->
-        <Group id="CenterCluster">
+        <Group id="Buttons">
+            <VideoPlayerButton id="CaptionsButton" iconUri="pkg:/images/icons/player/captions.png" />
+            <VideoPlayerButton id="CommentsButton" iconUri="pkg:/images/icons/player/comments.png" />
             <VideoPlayerButton id="PlayPauseButton"
                 iconUri="pkg:/images/icons/player/play.png"
                 iconUri2="pkg:/images/icons/player/pause.png" />
+            <VideoPlayerButton id="LikeButton" iconUri="pkg:/images/icons/player/like.png" />
+            <VideoPlayerButton id="MinimizeButton" iconUri="pkg:/images/icons/player/minimize.png" />
         </Group>
-        <!-- minimize, right-aligned to the trackbar's right edge (x=1212). -->
-        <Group id="RightCluster">
-            <VideoPlayerButton id="MinimizeButton"
-                iconUri="pkg:/images/icons/player/minimize.png" />
-        </Group>
-        <Label id="actionHint" width="420" height="28" font="font:SmallestSystemFont" visible="false" />
+        <Label id="actionHint" width="420" height="28" horizAlign="center" font="font:SmallestSystemFont" visible="false" />
     </children>
 </component>
