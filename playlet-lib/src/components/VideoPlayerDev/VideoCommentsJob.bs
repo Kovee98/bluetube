@@ -58,7 +58,8 @@ end function
 function FetchInnertubeComments(videoId as string, token as string, visitorData as string, cancellation as dynamic) as object
     tokens = [token]
     if token = ""
-        response = Innertube.CreateNextRequest({ videoId: videoId }, NextOptions(visitorData)).Cancellation(cancellation).Await()
+        ' Keys are quoted: Roku lowercases unquoted AA literal keys, and YouTube ignores "videoid".
+        response = Innertube.CreateNextRequest({ "videoId": videoId }, NextOptions(visitorData)).Cancellation(cancellation).Await()
         if not response.IsSuccess()
             return { error: response.ErrorMessage() }
         end if
@@ -81,7 +82,7 @@ function FetchInnertubeComments(videoId as string, token as string, visitorData 
         if JobIsCancelled()
             return result
         end if
-        response = Innertube.CreateNextRequest({ continuation: candidate }, NextOptions(visitorData)).Cancellation(cancellation).Await()
+        response = Innertube.CreateNextRequest({ "continuation": candidate }, NextOptions(visitorData)).Cancellation(cancellation).Await()
         if not response.IsSuccess()
             lastError = response.ErrorMessage()
             continue for
@@ -107,7 +108,7 @@ function NextOptions(visitorData as string) as dynamic
     if visitorData = ""
         return invalid
     end if
-    return { visitorData: visitorData }
+    return { "visitorData": visitorData }
 end function
 
 ' Collects every comments continuation token (the comments item section and the comments engagement panel),
