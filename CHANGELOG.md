@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Aligned the collapsed sidebar logo with the navigation icons and gave Library its own icon.
 - Fixed a Library history error that could leave video playback stuck on a black screen with the loading spinner and make Back unresponsive.
 - Comments now try every comments section YouTube returns, use the playback session identity, and fall back from an Invidious instance to YouTube when the instance has none.
+- Shorts showing up in the YouTube subscription feed (Subscriptions > All and the Home subscriptions row) after YouTube started mixing them into it.
+- Subscriptions > All order getting jumbled across pages: videos without a readable upload time now keep their place instead of moving to the end of each page.
 
 ### Changed
 

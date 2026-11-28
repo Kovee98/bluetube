@@ -319,7 +319,9 @@ and a warning offers a retry.
 Focus a channel with the Roku remote (or hover, focus, or click it on the web) to show that
 channel's uploads, newest first. **All** restores the combined subscription feed, sorted
 by upload time (for YouTube accounts the time is estimated from "3 hours ago"-style text,
-English only); videos repeated across pages are shown once.
+English only; videos without a readable time keep their place in YouTube's order);
+videos repeated across pages are shown once. Shorts are left out of the YouTube
+subscription feed, regardless of the "Disable Shorts" preference.
 Moving down the grid loads more videos; the web also offers **Load more**.
 
 A blue dot next to a channel marks uploads you have not seen yet; it clears when

@@ -50,6 +50,32 @@ namespace Tests
             m.assertEqual(ids.Join(","), "live,hour,tile,day-a,day-b,week,upcoming")
         end function
 
+        @it("keeps undated videos in place instead of sinking them to the end of the page")
+        function _()
+            result = Invidious.SortFeedByUploadTime([
+                { videoId: "premiere", lines: ["Some Channel", "Premieres in 3 hours"] }
+                { videoId: "hour", publishedText: "1 hour ago" }
+                { videoId: "undated", lines: ["Some Channel", "1.2M views"] }
+                { videoId: "day", publishedText: "1 day ago" }
+                { videoId: "minutes", publishedText: "5 minutes ago" }
+            ], 1000000000)
+            ids = []
+            for each video in result
+                ids.Push(video.videoId)
+            end for
+            m.assertEqual(ids.Join(","), "minutes,premiere,hour,undated,day")
+        end function
+
+        @it("keeps the original order when no video is dated")
+        function _()
+            result = Invidious.SortFeedByUploadTime([
+                { videoId: "a", lines: ["Kanal", "vor 3 Stunden"] }
+                { videoId: "b", lines: ["Kanal", "vor 1 Tag"] }
+            ], 1000000000)
+            m.assertEqual(result[0].videoId, "a")
+            m.assertEqual(result[1].videoId, "b")
+        end function
+
     end class
 
 end namespace

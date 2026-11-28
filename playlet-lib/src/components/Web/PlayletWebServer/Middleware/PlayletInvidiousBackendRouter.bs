@@ -61,9 +61,11 @@ namespace Http
                 return true
             end if
 
+            ' YouTube used to return Shorts in a separate shelf that was dropped below (only
+            ' feeds[0] is used), but now merges them into the subscription grid. Keep them out.
             options = {
                 "accessToken": accessToken
-                "disableShorts": m.preferences["content_feed.disable_shorts"]
+                "disableShorts": true
             }
 
             activeIdentifyToken = request.query.activeIdentifyToken

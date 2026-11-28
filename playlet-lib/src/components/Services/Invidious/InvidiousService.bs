@@ -820,10 +820,13 @@ namespace Invidious
 
     ' Sorts subscription feed videos newest first. Invidious provides "published"; the
     ' built-in YouTube backend only has relative text ("3 hours ago"), so it's estimated.
-    ' Videos with the same time keep their original order, and undated ones go last.
+    ' Videos with the same time keep their original order. Undated videos (premieres,
+    ' unparseable text) keep their place by borrowing the time of the closest dated video
+    ' before them (or after them, at the start of the page), since sinking them to the end
+    ' of each page breaks the order across pages.
     function SortFeedByUploadTime(videos as object, now as integer) as object
-        dated = []
-        undated = []
+        timestamps = []
+        firstTimestamp = invalid
         for each video in videos
             timestamp = invalid
             if IsAssociativeArray(video)
@@ -839,19 +842,34 @@ namespace Invidious
                     timestamp = TimeUtils.EstimateTimestampFromRelativeText(text, now)
                 end if
             end if
-            if timestamp = invalid
-                undated.Push(video)
-            else
-                ' Ascending sort on the negated time keeps ties stable.
-                dated.Push({ sortKey: -timestamp, video: video })
+            if firstTimestamp = invalid and timestamp <> invalid
+                firstTimestamp = timestamp
             end if
+            timestamps.Push(timestamp)
         end for
-        dated.SortBy("sortKey")
+
+        if firstTimestamp = invalid
+            result = []
+            result.Append(videos)
+            return result
+        end if
+
+        entries = []
+        previous = firstTimestamp
+        for i = 0 to videos.Count() - 1
+            timestamp = timestamps[i]
+            if timestamp = invalid
+                timestamp = previous
+            end if
+            previous = timestamp
+            ' Ascending sort on the negated time keeps ties stable.
+            entries.Push({ sortKey: -timestamp, video: videos[i] })
+        end for
+        entries.SortBy("sortKey")
         result = []
-        for each entry in dated
+        for each entry in entries
             result.Push(entry.video)
         end for
-        result.Append(undated)
         return result
     end function
 
